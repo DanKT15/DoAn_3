@@ -14,7 +14,7 @@ class Sanpham extends Migration
     public function up()
     {
         Schema::create('sanpham', function (Blueprint $table) {
-            $table->increments('MASP');
+            $table->increments('MASP')->from(1111);
             $table->string('TENSP', 100);
             $table->string('THONGTIN')->nullable();
             $table->decimal('GIASP', $precision = 8, $scale = 2);

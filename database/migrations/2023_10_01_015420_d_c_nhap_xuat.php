@@ -14,7 +14,7 @@ class DCNhapXuat extends Migration
     public function up()
     {
         Schema::create('dcnhapxuat', function (Blueprint $table) {
-            $table->increments('MADC');
+            $table->increments('MADC')->from(1111);
             $table->string('TENDC', 100);
             $table->text('DCNHAPXUAT')->nullable();
         });

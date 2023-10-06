@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\PhieunhanxuatController;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -51,3 +52,6 @@ Route::get('/model', function () {
     }
     return $data;
 })->middleware(['auth']); // đã gọi Model thành công
+
+
+Route::get('/Store', [PhieunhanxuatController::class, 'Store']);

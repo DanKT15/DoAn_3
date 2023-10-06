@@ -14,7 +14,7 @@ class CtNhapxuat extends Migration
     public function up()
     {
         Schema::create('ct_nhapxuat', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->from(1111);
             $table->integer('SOLUONG')->default(0);
             $table->decimal('DONGIA', $precision = 8, $scale = 2);
             $table->decimal('THANHTIEN', $precision = 8, $scale = 2);

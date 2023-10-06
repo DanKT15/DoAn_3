@@ -14,8 +14,9 @@ class Phieunhapxuat extends Migration
     public function up()
     {
         Schema::create('phieunhapxuat', function (Blueprint $table) {
-            $table->increments('SOPHIEU');
-            $table->timestamp('NGAYLAP')->useCurrent()->useCurrentOnUpdate();
+            $table->increments('id')->from(1111);
+            $table->string('SOPHIEU')->unique();
+            $table->timestamp('NGAYLAP')->useCurrent();
         });
     }
 

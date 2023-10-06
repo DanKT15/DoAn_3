@@ -14,7 +14,7 @@ class LoaiSP extends Migration
     public function up()
     {
         Schema::create('loaisp', function (Blueprint $table) {
-            $table->increments('MALOAI');
+            $table->increments('MALOAI')->from(1111);
             $table->string('TENLOAI', 100);
         });
     }

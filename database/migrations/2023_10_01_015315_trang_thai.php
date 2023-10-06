@@ -14,7 +14,7 @@ class TrangThai extends Migration
     public function up()
     {
         Schema::create('trangthai', function (Blueprint $table) {
-            $table->increments('MATT');
+            $table->increments('MATT')->from(1111);
             $table->string('TENNV', 100);
         });
     }

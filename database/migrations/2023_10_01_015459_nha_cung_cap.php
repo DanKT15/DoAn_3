@@ -14,7 +14,7 @@ class NhaCungCap extends Migration
     public function up()
     {
         Schema::create('nhacungcap', function (Blueprint $table) {
-            $table->increments('MANCC');
+            $table->increments('MANCC')->from(1111);
             $table->string('TENNCC', 50);
             $table->char('SDT', 12)->nullable();
             $table->text('DC')->nullable();
