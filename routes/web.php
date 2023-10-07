@@ -1,10 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\PhieunhanxuatController;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
+
+
+
+use App\Http\Controllers\Admin\PhieunhanxuatController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,39 +26,42 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('Home.trangchu');
-});
+})->middleware(['auth']);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
 
+// Multi input 
+// Route::get('/student-form', [StudentController::class, 'index']);
+// Route::post('/store-input-fields', [StudentController::class, 'store']);
+
+// Route::get('/test', function () {
+//     return Auth::id();
+// })->middleware(['auth']);
+
+// use App\Models\Trangthai;
+// Route::get('/model', function () {
+//     $data = [];
+//     foreach (Trangthai::all() as $flight) {
+//         $data = $flight->TENNV;
+//     }
+//     return $data;
+// })->middleware(['auth']); // đã gọi Model thành công
+
 require __DIR__.'/auth.php';
 
-// Route::get('/handle', [HomeController::class, 'handle']) // điều hướng sau khi login
-//             ->middleware(['auth']) // kiem tra co dang nhap hay chua
-//             ->name('handle'); // ten route
-
-Route::get('/user', function () {
-    return view('Home.user');
-})->middleware(['user'])->name('user.dashboard'); // kiểm tra có phải user
-
-Route::get('/admin', function () {
-    return view('Home.admin');
-})->middleware(['admin'])->name('admin.dashboard'); // kiểm tra có phải admin
-
-Route::get('/test', function () {
-    return Auth::id();
-})->middleware(['auth']);
-
-use App\Models\Trangthai;
-
-Route::get('/model', function () {
-    $data = [];
-    foreach (Trangthai::all() as $flight) {
-        $data = $flight->TENNV;
-    }
-    return $data;
-})->middleware(['auth']); // đã gọi Model thành công
 
 
-Route::get('/Store', [PhieunhanxuatController::class, 'Store']);
+
+
+
+
+
+
+
+
+
+
+
+

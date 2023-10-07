@@ -15,5 +15,7 @@ class CTnhapxuat extends Model
 
     protected $dateFormat = 'd-m-Y';
 
-    // protected $fillable = ['column1','column2',..,'columnn'];
+    public $timestamps = false;
+
+    protected $fillable = ['SOLUONG','DONGIA','THANHTIEN','SOPHIEU','MASP'];
 }

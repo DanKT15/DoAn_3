@@ -15,5 +15,7 @@ class Tonkho extends Model
 
     protected $dateFormat = 'd-m-Y';
 
-    // protected $fillable = ['column1','column2',..,'columnn'];
+    public $timestamps = false;
+
+    protected $fillable = ['MAKHO','MASP','SLTONKHO','SLNHAP','SLXUAT'];
 }

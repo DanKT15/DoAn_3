@@ -18,7 +18,6 @@ class Tonkho extends Migration
             $table->integer('SLTONKHO');
             $table->integer('SLNHAP')->default(0);
             $table->integer('SLXUAT')->default(0);
-            $table->char('QUANTRI', 12)->default('user');
         });
     }
 

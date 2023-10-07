@@ -15,5 +15,7 @@ class Nhansu extends Model
 
     protected $dateFormat = 'd-m-Y';
 
-    // protected $fillable = ['column1','column2',..,'columnn'];
+    public $timestamps = false;
+
+    protected $fillable = ['MANV','MAKHO','TENCV','QUANTRI'];
 }
