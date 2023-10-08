@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Nhansu;
+
+
 class checkAdmin
 {
     /**
@@ -17,15 +20,13 @@ class checkAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
-        if (Auth::user()->role === 'admin') {
+        $check = Nhansu::find(Auth::id());
+
+        if ($check === 'quantri') {
             return $next($request);
         }
         else {
-            return redirect('/');
+            return redirect('/')->with('alert', 'You not admin!!!');
         }
-        
     }
 }

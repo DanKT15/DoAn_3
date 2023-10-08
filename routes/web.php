@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\PhieunhanxuatController;
 
 Route::get('/', function () {
     return view('Home.trangchu');
-})->middleware(['auth']);
+})->middleware(['auth'])->name('trangchu');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -40,14 +40,13 @@ Route::get('/', function () {
 //     return Auth::id();
 // })->middleware(['auth']);
 
-// use App\Models\Trangthai;
+// use App\Models\User;
 // Route::get('/model', function () {
-//     $data = [];
-//     foreach (Trangthai::all() as $flight) {
-//         $data = $flight->TENNV;
+//     foreach (User::all() as $flight) {
+//         dd($flight);
 //     }
-//     return $data;
-// })->middleware(['auth']); // đã gọi Model thành công
+// })->middleware(['auth', 'admin']); // đã gọi Model thành công và check phân quyền thành công
+
 
 require __DIR__.'/auth.php';
 
