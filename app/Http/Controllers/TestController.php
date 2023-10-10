@@ -21,7 +21,7 @@ class TestController extends Controller
             // Student::create($value);
         // }
      
-        return back()->with('success', 'New subject has been added.'); // thong bao
+        return back()->with('success', 'New subject has been added.'); // thong bao with khoi tao session 
     }
 
 
