@@ -14,11 +14,11 @@ class KhoaNgoaiSanpham extends Migration
     public function up()
     {
         Schema::table('sanpham', function (Blueprint $table) {
-            $table->unsignedInteger('MALOAI')->unique()->after('TENSP');
-            $table->foreign('MALOAI')->references('MALOAI')->on('loaisp')->onDelete('cascade');
+            $table->unsignedInteger('MALOAI')->after('TENSP');
+            $table->foreign('MALOAI')->nullable()->references('MALOAI')->on('loaisp')->onDelete('cascade');
 
-            $table->unsignedInteger('MANCC')->unique()->after('MALOAI');
-            $table->foreign('MANCC')->references('MANCC')->on('nhacungcap')->onDelete('cascade');
+            $table->unsignedInteger('MANCC')->after('MALOAI');
+            $table->foreign('MANCC')->nullable()->references('MANCC')->on('nhacungcap')->onDelete('cascade');
         });
     }
 

@@ -15,13 +15,13 @@ class KhoaNgoaiPhieunhanxuat extends Migration
     {
         Schema::table('phieunhapxuat', function (Blueprint $table) {
 
-            $table->unsignedInteger('MANV')->unique()->nullable()->after('SOPHIEU');
+            $table->unsignedInteger('MANV')->nullable()->after('SOPHIEU');
             $table->foreign('MANV')->references('MANV')->on('users')->onDelete('cascade');
 
-            $table->unsignedInteger('MADC')->unique()->nullable()->after('MANV');
+            $table->unsignedInteger('MADC')->nullable()->after('MANV');
             $table->foreign('MADC')->references('MADC')->on('dcnhapxuat')->onDelete('cascade');
 
-            $table->unsignedInteger('MATT')->unique()->nullable()->after('MADC');
+            $table->unsignedInteger('MATT')->nullable()->after('MADC');
             $table->foreign('MATT')->references('MATT')->on('trangthai')->onDelete('cascade');
         });
     }

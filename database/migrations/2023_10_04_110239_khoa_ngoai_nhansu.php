@@ -16,7 +16,7 @@ class KhoaNgoaiNhansu extends Migration
         Schema::table('nhansu', function (Blueprint $table) {
             $table->unsignedInteger('MANV')->unique()->after('id');
             $table->foreign('MANV')->references('MANV')->on('users')->onDelete('cascade');
-            $table->unsignedInteger('MAKHO')->unique()->after('MANV');
+            $table->unsignedInteger('MAKHO')->after('MANV');
             $table->foreign('MAKHO')->references('MAKHO')->on('kho')->onDelete('cascade');
         });
     }

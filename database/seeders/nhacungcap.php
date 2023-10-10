@@ -17,9 +17,9 @@ class nhacungcap extends Seeder
     public function run()
     {
         DB::table('nhacungcap')->insert([
-            'TENNCC' => Str::random(20),
-            'SDT' => Str::random(12),
-            'DC' => Str::random(20)
+            'TENNCC' => 'Long Á',
+            'SDT' => '0909090909',
+            'DC' => 'Cần Thơ'
         ]);
     }
 }

@@ -20,9 +20,10 @@ class checkAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $check = Nhansu::find(Auth::id());
+        $id = Auth::id();
+        $check =  Nhansu::firstWhere('MANV', $id);
 
-        if ($check === 'quantri') {
+        if ($check->QUANTRI === 'quantri') {
             return $next($request);
         }
         else {

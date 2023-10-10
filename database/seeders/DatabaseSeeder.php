@@ -15,11 +15,15 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            UserSeeder::class,
             dcnhapxuat::class,
             trangthai::class,
             loaisp::class,
-            nhacungcap::class
+            nhacungcap::class,
+
+            kho::class,
+            sanpham::class,
+            phieunhapxuat::class,
+            UserSeeder::class
         ]);
     }
 }

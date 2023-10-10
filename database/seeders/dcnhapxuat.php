@@ -17,7 +17,8 @@ class dcnhapxuat extends Seeder
     public function run()
     {
         DB::table('dcnhapxuat')->insert([
-            'DCNHAPXUAT' => Str::random(10)
+            'TENDC' => 'Kho Ninh Kiều',
+            'DCNHAPXUAT' => 'Cần Thơ'
         ]);
     }
 }

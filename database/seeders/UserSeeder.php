@@ -21,5 +21,25 @@ class UserSeeder extends Seeder
             'email' => 'user@gmail.com',
             'password' => Hash::make('12345678')
         ]);
+
+        DB::table('users')->insert([
+            'TENNV' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        DB::table('nhansu')->insert([
+            'MANV' => '1111',
+            'MAKHO' => '1111',
+            'TENCV' => 'Kiểm kho',
+            'QUANTRI' => 'nhanvien'
+        ]);
+
+        DB::table('nhansu')->insert([
+            'MANV' => '1112',
+            'MAKHO' => '1111',
+            'TENCV' => 'Quản lý',
+            'QUANTRI' => 'quantri'
+        ]);
     }
 }

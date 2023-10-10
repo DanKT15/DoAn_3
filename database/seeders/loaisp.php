@@ -17,7 +17,7 @@ class loaisp extends Seeder
     public function run()
     {
         DB::table('loaisp')->insert([
-            'TENLOAI' => Str::random(10)
+            'TENLOAI' => 'Điện thoại'
         ]);
     }
 }

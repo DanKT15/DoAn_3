@@ -1,17 +1,17 @@
 <?php
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 
-
-
-use App\Http\Controllers\Admin\PhieunhanxuatController;
-
-
-
+use App\Http\Controllers\DCnhapxuatController;
+use App\Http\Controllers\PhieunhapxuatController;
+use App\Http\Controllers\KhoController;
+use App\Http\Controllers\LoaispController;
+use App\Http\Controllers\NhacungcapController;
+use App\Http\Controllers\SanphamController;
+use App\Http\Controllers\TrangthaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +53,8 @@ require __DIR__.'/auth.php';
 
 
 
-
-
+Route::get('/storephieut', [PhieunhapxuatController::class, 'create']);
+Route::post('/storephieu', [PhieunhapxuatController::class, 'store'])->name('storephieu');
 
 
 

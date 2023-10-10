@@ -14,9 +14,9 @@ class KhoaNgoaiTonkho extends Migration
     public function up()
     {
         Schema::table('tonkho', function (Blueprint $table) {
-            $table->unsignedInteger('MAKHO')->unique()->after('id');
+            $table->unsignedInteger('MAKHO')->after('id');
             $table->foreign('MAKHO')->references('MAKHO')->on('kho')->onDelete('cascade');
-            $table->unsignedInteger('MASP')->unique()->after('MAKHO');
+            $table->unsignedInteger('MASP')->after('MAKHO');
             $table->foreign('MASP')->references('MASP')->on('sanpham')->onDelete('cascade');
         });
     }

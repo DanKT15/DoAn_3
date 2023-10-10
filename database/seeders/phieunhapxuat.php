@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class trangthai extends Seeder
+class phieunhapxuat extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,6 @@ class trangthai extends Seeder
      */
     public function run()
     {
-        DB::table('trangthai')->insert([
-            'TENTT' => 'Nhập'
-        ]);
-
-        DB::table('trangthai')->insert([
-            'TENTT' => 'Xuất'
-        ]);
+       
     }
 }
