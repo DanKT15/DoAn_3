@@ -33,8 +33,8 @@ Route::get('/', function () {
 // })->middleware(['auth'])->name('dashboard');
 
 // Multi input 
-// Route::get('/student-form', [StudentController::class, 'index']);
-// Route::post('/store-input-fields', [StudentController::class, 'store']);
+// Route::get('/student-form', [TestController::class, 'index']);
+// Route::post('/store-input-fields', [TestController::class, 'store']);
 
 // Route::get('/test', function () {
 //     return Auth::id();
