@@ -70,37 +70,29 @@
   </div>
   <hr>
   <ul class="app-menu">
+    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-dollar'></i><span
+          class="app-menu__label">Dashboard</span></a></li>
 
-    <!-- <li><a class="app-menu__item haha" href="phan-mem-ban-hang.html"><i class='app-menu__icon bx bx-cart-alt'></i>
-        <span class="app-menu__label">POS Bán Hàng</span></a></li>
-    <li><a class="app-menu__item active" href="index.html"><i class='app-menu__icon bx bx-tachometer'></i><span
-          class="app-menu__label">Bảng điều khiển</span></a></li> -->
+    <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
+          class="app-menu__label">Quản Lý Phiếu</span></a></li>
 
-    <li><a class="app-menu__item" href=""><i class='app-menu__icon bx bx-dollar'></i><span
-          class="app-menu__label">Quản lí Đơn Hàng</span></a></li>
-    <li><a class="app-menu__item " href=""><i class='app-menu__icon bx bx-id-card'></i> <span
-          class="app-menu__label">Quản lý Tài Khoản</span></a></li>
-    <li><a class="app-menu__item" href=""><i class='app-menu__icon bx bx-user-voice'></i><span
-          class="app-menu__label">Quản lý Sản Phẩm</span></a></li>
-    <li><a class="app-menu__item" href=""><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
-          class="app-menu__label">Quản lý Danh Mục</span></a></li>
-    {{-- <li><a class="app-menu__item" href="/admin/provider"><i class='app-menu__icon bx bx-task'></i><span
-          class="app-menu__label">Quản lý Nhà Cung Cấp</span></a></li>
-    <li><a class="app-menu__item " href="/admin/variety"><i class='app-menu__icon bx bx-id-card'></i> <span
-          class="app-menu__label">Quản lý Phân Loại</span></a></li>
-    <li><a class="app-menu__item " href="/admin/status"><i class='app-menu__icon bx bx-purchase-tag-alt'></i> <span
-          class="app-menu__label">Quản lý Trạng Thái</span></a></li>
-    <li><a class="app-menu__item" href="/admin/banner"><i class='app-menu__icon bx bx-run'></i><span
-          class="app-menu__label">Quản lý Banner</span></a></li>
-    <li><a class="app-menu__item" href="/admin/introduce"><i class='app-menu__icon bx bx-task'></i><span
-          class="app-menu__label">Giới Thiệu</span></a></li> --}}
+    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-user-voice'></i><span
+          class="app-menu__label">Quản Lý Nhân Sự</span></a></li>
 
-    <!-- <li><a class="app-menu__item" href=""><i
-          class='app-menu__icon bx bx-pie-chart-alt-2'></i><span class="app-menu__label">Báo cáo doanh thu</span></a></li>
-    <li><a class="app-menu__item" href="page-calendar.html"><i class='app-menu__icon bx bx-calendar-check'></i><span
-          class="app-menu__label">Lịch công tác </span></a></li>
-    <li><a class="app-menu__item" href="#"><i class='app-menu__icon bx bx-cog'></i><span 
-          class="app-menu__label">Cài đặt hệ thống</span></a></li> -->
+    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
+          class="app-menu__label">Quản Lý Kho</span></a></li>
+
+    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-task'></i><span
+          class="app-menu__label">Quản Lý Phân Loại</span></a></li>
+
+    <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
+          class="app-menu__label">Quản Lý Nhà Cung Cấp</span></a></li>
+
+    <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i> <span
+          class="app-menu__label">Quản Lý Trạng Thái</span></a></li>
+
+    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-run'></i><span
+          class="app-menu__label">Quản Lý Địa Chỉ</span></a></li>
   </ul>
 </aside>
 

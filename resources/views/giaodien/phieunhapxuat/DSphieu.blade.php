@@ -4,7 +4,7 @@
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item active"><a href="#"><b>Danh sách ảnh sản phẩm</b></a></li>
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách X</b></a></li>
         </ul>
         <div id="clock"></div>
     </div>
@@ -15,18 +15,14 @@
                     <div class="row element-button">
                         <div class="col-sm-2">
           
-                          <?php
-                            if (isset($sanpham) and !empty($sanpham)) {
+                            @if (Session::Has('alert'))
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> {{ Session::Get('alert') }}.
+                              </div>
+                            @endif
 
-                                foreach ($sanpham as $key => $value) {
-                                    $masp = $value['MaSP'];
-                                }
-                            }
-                          ?>
+                          <a class="btn btn-add btn-sm" href="{{ route('phieunhapxuat.create') }}" title="Thêm"><i class="fas fa-plus"></i>Tạo Phiếu Mới</a></div>
 
-                          <a class="btn btn-add btn-sm" href="" title="Thêm"><i class="fas fa-plus"></i>
-                            Thêm ảnh sản phẩm</a>
-                        </div>
                     </div>
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>

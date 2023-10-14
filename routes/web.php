@@ -25,7 +25,7 @@ use App\Http\Controllers\TrangthaiController;
 */
 
 Route::get('/', function () {
-    return view('Home.trangchu');
+    return redirect()->route('phieunhapxuat.index');
 })->middleware(['auth'])->name('trangchu');
 
 // Route::get('/dashboard', function () {
@@ -52,12 +52,17 @@ require __DIR__.'/auth.php';
 
 
 
+Route::prefix('phieunhapxuat')->as('phieunhapxuat.')->middleware(['auth'])->group(function () {
 
-Route::get('/storephieut', [PhieunhapxuatController::class, 'create']);
-Route::post('/storephieu', [PhieunhapxuatController::class, 'store'])->name('storephieu');
+    Route::get('/index', [PhieunhapxuatController::class, 'index'])->name('index');
+    Route::get('/create', [PhieunhapxuatController::class, 'create'])->name('create');
+    Route::post('/store', [PhieunhapxuatController::class, 'store'])->name('store');
+    Route::get('/show/{id}', [PhieunhapxuatController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [PhieunhapxuatController::class, 'edit'])->name('edit');
+    Route::post('/update', [PhieunhapxuatController::class, 'update'])->name('update');
+    Route::post('/destroy', [PhieunhapxuatController::class, 'destroy'])->name('destroy');
 
-
-
+}); // kiet
 
 
 

@@ -16,8 +16,7 @@ class PhieunhapxuatController extends Controller
     }
 
     public function create(){   // Giao diện thêm dữ liệu: GET
-        // return view("giaodien.app", ['page' => "phieunhapxuat.ViewAddPhieu"]);
-        return view("giaodien.phieunhapxuat.ViewAddPhieu");
+        return view("giaodien.app", ['page' => "phieunhapxuat.ViewAddPhieu"]);
     }
 
     public function store(Request $request){   // Lưu trữ dữ liệu mới: POST
@@ -32,11 +31,8 @@ class PhieunhapxuatController extends Controller
                 'SOPHIEU' => $request->sophieu
             ]);
     
-            Phieunhapxuat::where('id', $idPhieu)->update(['SOPHIEU' => 'KHO-'.$idPhieu]);
+            Phieunhapxuat::where('id', $idPhieu)->update(['SOPHIEU' => 'KHOXX-'.$idPhieu]);
 
-            
-
-    
             return back()->with('alert', 'Thêm dữ liệu thành công');
 
         } catch (Exception $err) {
