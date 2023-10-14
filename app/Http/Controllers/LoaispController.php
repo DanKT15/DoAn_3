@@ -29,7 +29,7 @@ class LoaispController extends Controller
         
     }
 
-    public function update(Request $request){   // Cập nhật lại dữ liệu: POST
+    public function update(Request $request, $id){   // Cập nhật lại dữ liệu: POST
         
     }
 

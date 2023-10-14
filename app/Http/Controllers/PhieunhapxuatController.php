@@ -12,7 +12,7 @@ use App\Models\CTnhapxuat;
 class PhieunhapxuatController extends Controller
 {
     public function index(){   // Giao diện hiển thị toàn bộ dữ liệu: GET
-        
+        return view("giaodien.app", ['page' => "phieunhapxuat.DSphieu"]);
     }
 
     public function create(){   // Giao diện thêm dữ liệu: GET
@@ -53,7 +53,7 @@ class PhieunhapxuatController extends Controller
         
     }
 
-    public function update(Request $request){   // Cập nhật lại dữ liệu: POST
+    public function update(Request $request, $id){   // Cập nhật lại dữ liệu: POST
         
     }
 
