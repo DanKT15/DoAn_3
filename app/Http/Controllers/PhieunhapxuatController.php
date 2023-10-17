@@ -24,11 +24,13 @@ class PhieunhapxuatController extends Controller
     public function create(){   // Giao diện thêm dữ liệu: GET
         $DCnhapxuat = DCnhapxuat::all();
         $Trangthai = Trangthai::all();
+        $Sanpham = Sanpham::all();
         return view("giaodien.app", 
         [
             'page' => "phieunhapxuat.ViewAddPhieu",
             'DCnhapxuat' => $DCnhapxuat,
-            'Trangthai' => $Trangthai
+            'Trangthai' => $Trangthai,
+            'Sanpham' => $Sanpham
         ]);
     }
 
@@ -38,8 +40,8 @@ class PhieunhapxuatController extends Controller
             'sophieu' => 'required|alpha|max:20',
             'madiachi' => 'required|numeric',
             'matrangthai' => 'required|numeric',
-            'soluong' => 'required|numeric',
-            'masp.*.subject' => 'required|numeric|distinct:strict'
+            'sp.*.slsp' => 'required|numeric',
+            'sp.*.idsp' => 'required|numeric|distinct:strict'
         ];
 
         $mess = [
@@ -48,10 +50,10 @@ class PhieunhapxuatController extends Controller
             'sophieu.max' => 'Tối đa 20 kí tự',
             'madiachi.required' => 'Chưa chọn thông tin',
             'matrangthai.required' => 'Chưa chọn thông tin',
-            'masp.*.subject.required' => 'Chưa chọn thông tin',
-            'masp.*.subject.distinct' => 'Không được trùng lặp thông tin',
-            'soluong.required' => 'Vui lòng nhập số lượng',
-            'soluong.numeric' => 'Vui lòng nhập chữ số',
+            'sp.*.idsp.required' => 'Chưa chọn thông tin',
+            'sp.*.idsp.distinct' => 'Không được trùng lặp thông tin',
+            'sp.*.slsp.required' => 'Vui lòng nhập số lượng',
+            'sp.*.slsp.numeric' => 'Vui lòng nhập chữ số',
         ];
 
         $request->validate($rules, $mess);

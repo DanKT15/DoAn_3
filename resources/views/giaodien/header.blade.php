@@ -56,8 +56,15 @@
   <ul class="app-nav">
     
     <!-- User Menu-->
-    <li><a class="app-nav__item" href=""><i class='bx bx-log-out bx-rotate-180'></i> </a>
-
+    <li>
+      <form method="POST" action="{{ route('logout') }}">
+            @csrf
+      
+            <a class="app-nav__item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                  <i class='bx bx-log-out bx-rotate-180'></i> 
+            </a>
+           
+        </form>
     </li>
   </ul>
 </header>

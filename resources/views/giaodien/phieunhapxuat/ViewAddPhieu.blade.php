@@ -43,7 +43,7 @@
               
               <div class="form-group col-md-5">
                 <label class="control-label">Mã Phiếu</label>
-                <input class="form-control" name="sophieu" type="text" value="">
+                <input class="form-control" name="sophieu" type="text" value="{{ old("sophieu") }}">
                 @error('sophieu')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
@@ -56,7 +56,13 @@
                   <option value="">Chọn</option> 
 
                   @foreach ($DCnhapxuat as $item)
-                    <option value="{{ $item->MADC }}">{{ $item->TENDC }}</option>
+
+                    @if (old('madiachi') == $item->MADC)
+                      <option value="{{ $item->MADC }}" selected >{{ $item->TENDC }}</option>
+                    @else
+                      <option value="{{ $item->MADC }}">{{ $item->TENDC }}</option>
+                    @endif
+
                   @endforeach
 
                 </select>
@@ -72,7 +78,13 @@
                   <option value="">Chọn</option> 
                   
                   @foreach ($Trangthai as $item)
-                    <option value="{{ $item->MATT }}">{{ $item->TENTT }}</option>
+
+                    @if (old('matrangthai') == $item->MATT)
+                      <option value="{{ $item->MATT }}" selected >{{ $item->TENTT }}</option>
+                    @else
+                      <option value="{{ $item->MATT }}">{{ $item->TENTT }}</option>
+                    @endif
+
                   @endforeach
 
                 </select>
@@ -80,26 +92,6 @@
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
-
-             
-                {{-- <div class="form-group col-md-8">
-                  <label for="exampleSelect1" class="control-label">Sản Phẩm</label>
-                  <select class="form-control" name="masp[0][subject]" id="exampleSelect1">
-    
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="fiat">Fiat</option>
-                      <option value="audi">Audi</option>
-    
-                  </select>
-                </div>
-    
-                <div class="form-group col-md-2">
-                  <label class="control-label">Chức Năng</label>
-                  <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button>
-                </div> --}}
-
-                
 
                 <table style="border-collapse: collapse" cellspacing="0" cellpadding="0" class="table" id="dynamicAddRemove">
                   <tr>
@@ -110,15 +102,22 @@
                   <tr>
                       <td>
                         <div class="form-group col-md-10">
-                          <select class="form-control" name="masp[0][subject]" id="exampleSelect1">
+                          <select class="form-control" name="sp[0][idsp]" id="exampleSelect1">
             
-                              <option value="">Chọn</option> 
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
+                            <option value="">Chọn</option> 
+                            
+                            @foreach ($Sanpham as $item)
+
+                              @if (old("sp.0.idsp") == $item->MASP )
+                                <option value="{{ $item->MASP }}" selected >{{ $item->TENSP }}</option>
+                              @else
+                                <option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>
+                              @endif
+
+                            @endforeach
             
                           </select>
-                          @error('masp.0.subject')
+                          @error("sp.0.idsp")
                               <span style="color: red">{{ $message }}</span>
                           @enderror
                         </div>
@@ -126,8 +125,8 @@
 
                       <td>
                         <div class="form-group col-md-10">
-                          <input class="form-control" name="soluong" type="number" value="">
-                          @error('soluong')
+                          <input class="form-control" name="sp[0][slsp]" type="number" value="{{ old("sp.0.slsp") }}">
+                          @error("sp.0.slsp")
                               <span style="color: red">{{ $message }}</span>
                           @enderror
                         </div>
@@ -138,8 +137,68 @@
                           <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button>
                         </div>
                       </td>
-
                   </tr>
+
+
+
+                  {{-- hien thi lai sp khi loi xay ra --}}
+                  @php
+                    $resul = old('sp');
+                  @endphp
+                  
+                    @if ($resul)
+                                            
+                      @for ($i = 1; $i < count($resul); $i++)
+                          
+                          <tr>
+                            <td>
+                              <div class="form-group col-md-10">
+                                <select class="form-control" name="sp[{{ $i }}][idsp]" id="exampleSelect1">
+                  
+                                  <option value="">Chọn</option> 
+                                  
+                                  @foreach ($Sanpham as $item)
+      
+                                    @if ($resul[$i]['idsp'] == null)
+                                      <option value="">Chọn</option> 
+                                    @endif
+
+                                    @if ($resul[$i]['idsp'] == $item->MASP )
+                                      <option value="{{ $item->MASP }}" selected >{{ $item->TENSP }}</option>
+                                    @else
+                                      <option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>
+                                    @endif
+      
+                                  @endforeach
+                  
+                                </select>
+                                @error("sp.".$i.".idsp")
+                                    <span style="color: red">{{ $message }}</span>
+                                @enderror
+                              </div>
+                            </td>
+      
+                            <td>
+                              <div class="form-group col-md-10">
+                                <input class="form-control" name="sp[{{ $i }}][slsp]" type="number" value="{{ $resul[$i]['slsp'] }}">
+                                @error("sp.".$i.".slsp")
+                                    <span style="color: red">{{ $message }}</span>
+                                @enderror
+                              </div>
+                            </td>
+      
+                            <td>
+                              <div class="form-group col-md-10">
+                                <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button>
+                              </div>
+                            </td>
+                        </tr>
+
+                      @endfor
+                      {{-- @dd($resul) --}}
+                    @endif 
+  
+
               </table>
         
               </div>
@@ -158,13 +217,16 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-    var i = 0;
+    let i = 0;
+
     $("#dynamic-ar").click(function () {
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><div class="form-group col-md-10"><select class="form-control" name="masp['+ i +'][subject]" id="exampleSelect1"><option value="">Chọn</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></div></td><td><div class="form-group col-md-10"><input class="form-control" name="soluong" type="number" value="">@error('soluong')<span style="color: red">{{ $message }}</span>@enderror</div></td><td><div class="form-group col-md-10"><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></div></td></tr>');
+        $("#dynamicAddRemove").append('<tr id = "id'+ i +'"></tr>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><select class="form-control" name="sp['+ i +'][idsp]" id="exampleSelect1"><option value="">Chọn</option>@foreach ($Sanpham as $item)<option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>@endforeach</select>@error("sp.'+ i +'.idsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><input class="form-control" name="sp['+ i +'][slsp]" type="number"">@error("sp.'+ i +'.slsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button></div></td>');
     });
     $(document).on('click', '.remove-input-field', function () {
          $(this).parents('tr').remove();
     });
 </script>
-
