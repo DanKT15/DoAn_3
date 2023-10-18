@@ -189,7 +189,7 @@
       
                             <td>
                               <div class="form-group col-md-10">
-                                <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button>
+                                <button type="button" class="btn btn-outline-danger remove-input-field">Delete</button>
                               </div>
                             </td>
                         </tr>
@@ -224,7 +224,7 @@
         $("#dynamicAddRemove").append('<tr id = "id'+ i +'"></tr>');
         $("#id"+ i +"").append('<td><div class="form-group col-md-10"><select class="form-control" name="sp['+ i +'][idsp]" id="exampleSelect1"><option value="">Chọn</option>@foreach ($Sanpham as $item)<option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>@endforeach</select>@error("sp.'+ i +'.idsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
         $("#id"+ i +"").append('<td><div class="form-group col-md-10"><input class="form-control" name="sp['+ i +'][slsp]" type="number"">@error("sp.'+ i +'.slsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
-        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Thêm SP</button></div></td>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></div></td>');
     });
     $(document).on('click', '.remove-input-field', function () {
          $(this).parents('tr').remove();
