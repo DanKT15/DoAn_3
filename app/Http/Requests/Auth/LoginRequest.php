@@ -34,6 +34,17 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'email.reuired' => 'Chưa nhập thông tin',
+            'email.string' => 'Vui lòng nhập ký tự chữ cái',
+            'email.email' => 'Vui lòng nhập đúng chú pháp email',
+            'password.required' => 'Chưa nhập thông tin',
+            'password.string' => 'Vui lòng nhập ký tự chữ cái',
+        ];
+    }
+
     /**
      * Attempt to authenticate the request's credentials.
      *

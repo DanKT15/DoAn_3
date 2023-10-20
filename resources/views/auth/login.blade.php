@@ -55,11 +55,7 @@
 
     </x-auth-card> --}}
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <!-- Validation Errors -->
-    <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    
 
     <div class="limiter">
         <div class="container-login100">
@@ -67,11 +63,12 @@
                 <div class="login100-pic js-tilt" data-tilt>
                     <img src="images/team.jpg" alt="IMG">
                 </div>
+
                 <!--=====TIÊU ĐỀ======-->
                 <form method="POST" action="{{ route('login') }}" class="login100-form validate-form">
                     @csrf
                     <span class="login100-form-title">
-                        <b>ĐĂNG NHẬP HỆ THỐNG POS</b>
+                        <b>ĐĂNG NHẬP HỆ THỐNG POS</b><br>
                     </span>
                     <!--=====FORM INPUT TÀI KHOẢN VÀ PASSWORD======-->
                     <form action="">
@@ -109,6 +106,12 @@
                                 Bạn quên mật khẩu?
                             </a>
                         </div>
+
+                        <!-- Validation Errors -->
+                        @if ($errors->any())
+                            <p style="color: red">Sai tài khoản hoặc mật khẩu vui lòng kiểm tra lại</p>
+                        @endif
+                        
                     </form>
                     <!--=====FOOTER======-->
                     <div class="text-center p-t-70 txt2">
