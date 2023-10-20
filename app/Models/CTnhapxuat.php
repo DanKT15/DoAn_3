@@ -17,5 +17,6 @@ class CTnhapxuat extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['SOLUONG','DONGIA','THANHTIEN','SOPHIEU','MASP'];
+    protected $fillable = ['SOLUONG','DONGIA','THANHTIEN','MAPHIEU','MASP'];
+
 }

@@ -13,6 +13,7 @@ use App\Models\Nhansu;
 use App\Models\DCnhapxuat;
 use App\Models\Trangthai;
 use App\Models\Kho;
+use App\Models\Tonkho;
 
 
 class PhieunhapxuatController extends Controller
@@ -22,9 +23,18 @@ class PhieunhapxuatController extends Controller
     }
 
     public function create(){   // Giao diện thêm dữ liệu: GET
+
         $DCnhapxuat = DCnhapxuat::all();
         $Trangthai = Trangthai::all();
         $Sanpham = Sanpham::all();
+
+        // SELECT p.SOPHIEU, u.TENNV, n.QUANTRI, k.TENKHO
+        // FROM phieunhapxuat p, users u, nhansu n, kho k
+        // WHERE p.SOPHIEU LIKE 'ADGSG-1118'
+        // AND p.MANV = u.MANV
+        // AND n.MANV = u.MANV
+        // AND n.MAKHO = k.MAKHO
+
         return view("giaodien.app", 
         [
             'page' => "phieunhapxuat.ViewAddPhieu",
@@ -64,15 +74,6 @@ class PhieunhapxuatController extends Controller
 
         $nhanvien =  Nhansu::firstWhere('MANV', $idnhanvien);
 
-        $kho = Kho::find($nhanvien->MAKHO);
-
-        // SELECT p.SOPHIEU, u.TENNV, n.QUANTRI, k.TENKHO
-        // FROM phieunhapxuat p, users u, nhansu n, kho k
-        // WHERE p.SOPHIEU LIKE 'ADGSG-1118'
-        // AND p.MANV = u.MANV
-        // AND n.MANV = u.MANV
-        // AND n.MAKHO = k.MAKHO
-
         try {
 
             $idphieu = Phieunhapxuat::insertGetId([
@@ -83,6 +84,75 @@ class PhieunhapxuatController extends Controller
             ]);
     
             Phieunhapxuat::where('id', $idphieu)->update(['SOPHIEU' => strtoupper($sophieu).'-'.$idphieu]);
+
+            foreach ($request->sp as $key => $value) {
+
+                $sl = $value['slsp'];
+                $sp = Sanpham::find($value['idsp']);
+                $gia = $sp->GIASP;
+                $dongia = $gia * $sl;
+                
+                $CTnhapxuat = CTnhapxuat::create([
+                    'SOLUONG' => $sl, 
+                    'DONGIA' => $gia, 
+                    'THANHTIEN' => $dongia, 
+                    'MAPHIEU' => $idphieu, 
+                    'MASP' => $value['idsp']
+                ]);
+
+            }
+
+            $Trangthai = Trangthai::find($request->matrangthai);
+
+            $makho = $nhanvien->MAKHO;
+
+            switch ($Trangthai->TENTT) {
+
+                case 'Xuất':
+                    
+                    foreach ($request->sp as $key => $value) {
+
+                        $tonkho = Tonkho::where('MAKHO', $makho)
+                        ->where('MASP', $value['idsp'])
+                        ->first();
+
+                        if ($tonkho->SLTONKHO < $value['slsp'] || $value['slsp'] <= 0) {
+
+                            $sp = Sanpham::find($value['idsp']);
+
+                            return back()->with('err', 'Hiện chỉ còn '.$tonkho->SLTONKHO.' sản phẩm '.$sp->TENSP);
+                        }
+
+                        Tonkho::where('MAKHO', $makho)
+                        ->where('MASP', $value['idsp'])
+                        ->update([
+                            'SLTONKHO' => $tonkho->SLTONKHO - $value['slsp'],
+                            'SLXUAT' => $tonkho->SLXUAT + $value['slsp'],
+                        ]);
+
+                    }
+
+                    break;
+                
+                default:
+                    
+                    foreach ($request->sp as $key => $value) {
+
+                        $tonkho = Tonkho::where('MAKHO', $makho)
+                        ->where('MASP', $value['idsp'])
+                        ->first();
+
+                        Tonkho::where('MAKHO', $makho)
+                        ->where('MASP', $value['idsp'])
+                        ->update([
+                            'SLTONKHO' => $tonkho->SLTONKHO + $value['slsp'],
+                            'SLNHAP' => $tonkho->SLNHAP + $value['slsp'],
+                        ]);
+
+                    }
+
+                    break;
+            }
 
             return back()->with('alert', 'Thêm dữ liệu thành công');
 
