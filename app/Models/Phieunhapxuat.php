@@ -11,11 +11,11 @@ class Phieunhapxuat extends Model
 
     protected $table = 'phieunhapxuat';
 
-    protected $primaryKey = 'SOPHIEU';
+    protected $primaryKey = 'id';
 
     protected $dateFormat = 'd-m-Y';
 
     public $timestamps = false;
 
-    protected $fillable = ['SOPHIEU','MANV','MADC','MATT'];
+    protected $fillable = ['SOPHIEU','MANV','MADC','MATT','NGAYLAP'];
 }

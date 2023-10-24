@@ -10,16 +10,23 @@
     </div>
     <div class="row">
         <div class="col-md-12">
+
+            @if (Session::Has('alert'))
+                <div class="alert alert-success">
+                    <strong>Success!</strong> {{ Session::Get('alert') }}.
+                </div>
+            @endif
+
+            @if (Session::Has('err'))
+                <div class="alert alert-warning">
+                    <strong>Error!</strong> {{ Session::Get('err') }}.
+                </div>
+            @endif
+
             <div class="tile">
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
-          
-                            @if (Session::Has('alert'))
-                            <div class="alert alert-success">
-                                <strong>Success!</strong> {{ Session::Get('alert') }}.
-                              </div>
-                            @endif
 
                           <a class="btn btn-add btn-sm" href="{{ route('phieunhapxuat.create') }}" title="Thêm"><i class="fas fa-plus"></i>Tạo Phiếu Mới</a></div>
 
@@ -27,35 +34,50 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>
-                                <th>Mã ảnh sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Đường dẫn lưu ảnh</th>
+                                <th>Mã phiếu</th>
+                                <th>Số phiếu</th>
+                                <th>Ngày lập</th>
+                                <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <?php
-
-                                if (isset($sanpham) and !empty($sanpham)) {
-
-                                    foreach ($sanpham as $key => $value) {
-                                        echo '
-                                        <tr>
-                                            <td>'.$value['MaHA'].'</td>
-                                            <td>'.$value['TenSP'].'</td>
-                                            <td>'.$value['Img_sp'].'</td>
-
-                                            <td>
-                                                <a class="btn btn-primary btn-sm trash" href="" title="Xóa" onclick="myFunction(this)"><i class="fas fa-trash-alt"></i></a>
-                                            </td>
-                                        </tr>
-                                        ';
-                                    }
-                                }
+                            @if (!empty($phieu))
                                 
-                            ?>
+                                @foreach ($phieu as $key => $value)
+                                    
+                                    <tr>
+                                        <td>{{ $value['id'] }}</td>
+                                        <td>{{ $value['SOPHIEU'] }}</td>
+                                        <td>{{ $value['NGAYLAP'] }}</td>
 
+                                        @if (!empty($Trangthai))
+                                            @foreach ($Trangthai as $key => $values)
+                                                @if ($values['MATT'] == $value['MATT'])
+                                                    <td>{{ $values['TENTT'] }}</td>
+                                                @endif
+                                            @endforeach
+                                        @endif
+
+                                        <td>
+                                            {{-- <a class="btn btn-primary btn-sm trash" href="" title="Xóa"><i class="fas fa-trash-alt"></i></a> --}}
+                                            
+                                            <form class="btn" action="{{ route('phieunhapxuat.destroy') }}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="idphieu" value="{{ $value['id'] }}">
+                                                <button class="btn btn-primary btn-sm trash" type="submit"><i class="fas fa-trash-alt"></i></button>
+                                            </form>
+
+                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.edit', ['id' => $value['id']]) }}" title="Sửa"><i class="fas fa-edit"></i></a>
+                                            
+                                        </td>
+                                    </tr>
+
+                                @endforeach
+
+                            @endif
+                                        
                         </tbody>
                     </table>
                 </div>
