@@ -145,8 +145,8 @@ class PhieunhapxuatController extends Controller
                             Tonkho::create([
                                 'MAKHO' => $makho,
                                 'MASP' => $value['idsp'],
-                                'SLTONKHO' => $tonkho->SLTONKHO + $value['slsp'],
-                                'SLNHAP' => $tonkho->SLNHAP + $value['slsp'],
+                                'SLTONKHO' => $value['slsp'],
+                                'SLNHAP' => $value['slsp'],
                                 'SLXUAT' => 0
                             ]);
                         }
@@ -193,8 +193,8 @@ class PhieunhapxuatController extends Controller
 
             return back()->with('alert', 'Tạo phiếu '.$Trangthai->TENTT.' thành công');
 
-        } catch (Exception $err) {
-            return back()->withError($err->getMessage())->withInput();
+        } catch (Exception $errors) {
+            return back()->withError($errors->getMessage())->withInput();
         }
         
     }
@@ -202,12 +202,18 @@ class PhieunhapxuatController extends Controller
     public function show($id){   // Lấy chi tiết của một dữ liệu: GET
 
         $phieu = Phieunhapxuat::find($id);
-        $ctphieu = CTnhapxuat::where('MAPHIEU', $id);
+        $ctphieu = CTnhapxuat::where('MAPHIEU', $id)->get();
+        $sanpham = Sanpham::all();
+        $DCnhapxuat = DCnhapxuat::all();
+        $Trangthai = Trangthai::all();
 
         return view("giaodien.app", [
-            'page' => "phieunhapxuat.DSphieu",
+            'page' => "phieunhapxuat.CTPhieu",
             'phieu' => $phieu,
-            'ctphieu'=> $ctphieu
+            'ctphieu' => $ctphieu,
+            'sanpham' => $sanpham,
+            'DCnhapxuat' => $DCnhapxuat,
+            'Trangthai' => $Trangthai
         ]);
     }
 

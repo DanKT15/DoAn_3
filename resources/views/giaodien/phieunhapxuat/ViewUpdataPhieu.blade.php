@@ -29,11 +29,13 @@
             <form class="row" action="{{ route('phieunhapxuat.update') }}" method="post">
               @csrf
               
-               
+               @php
+                  $sophieu = explode( '-', $phieu['SOPHIEU']);
+               @endphp
                        
                 <div class="form-group col-md-6">
                     <label class="control-label">Mã Phiếu</label>
-                    <input class="form-control" name="sophieu" type="text" value="{{ $phieu['SOPHIEU'] }}">
+                    <input class="form-control" name="sophieu" type="text" value="{{ $sophieu[0] }}">
                     @error('sophieu')
                         <span style="color: red">{{ $message }}</span>
                     @enderror

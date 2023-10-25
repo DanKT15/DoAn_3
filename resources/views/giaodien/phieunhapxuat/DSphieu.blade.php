@@ -4,7 +4,7 @@
 <main class="app-content">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item active"><a href="#"><b>Danh sách X</b></a></li>
+            <li class="breadcrumb-item active"><a href="#"><b>Danh sách Phiếu</b></a></li>
         </ul>
         <div id="clock"></div>
     </div>
@@ -63,14 +63,16 @@
                                         <td>
                                             {{-- <a class="btn btn-primary btn-sm trash" href="" title="Xóa"><i class="fas fa-trash-alt"></i></a> --}}
                                             
+                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.edit', ['id' => $value['id']]) }}" title="Sửa"><i class="fas fa-edit"></i></a>
+                                            
+                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.show', ['id' => $value['id']]) }}" title="Chi tiết"><i class="fas fa-edit"></i></a>
+
                                             <form class="btn" action="{{ route('phieunhapxuat.destroy') }}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="idphieu" value="{{ $value['id'] }}">
                                                 <button class="btn btn-primary btn-sm trash" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
 
-                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.edit', ['id' => $value['id']]) }}" title="Sửa"><i class="fas fa-edit"></i></a>
-                                            
                                         </td>
                                     </tr>
 
