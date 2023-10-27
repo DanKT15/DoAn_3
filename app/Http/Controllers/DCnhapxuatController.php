@@ -10,30 +10,110 @@ use App\Models\DCnhapxuat;
 class DCnhapxuatController extends Controller
 {
     public function index(){   // Giao diện hiển thị toàn bộ dữ liệu: GET
-        
+
+        $diachi = DCnhapxuat::all();
+
+        return view("giaodien.app", [
+            'page' => "DCnhapxuat.DSdiachi",
+            "diachi"=> $diachi
+        ]);
     }
 
     public function create(){   // Giao diện thêm dữ liệu: GET
-        
+        return view("giaodien.app", [
+            'page' => "DCnhapxuat.ViewAddDiachi"
+        ]);
     }
 
     public function store(Request $request){   // Lưu trữ dữ liệu mới: POST
-        
-    }
+        $rules = [
+            'TENDC' => 'required|alpha',
+            'DCNHAPXUAT' => 'required|alpha'
+        ];
 
-    public function show($id){   // Lấy chi tiết của một dữ liệu: GET
-        
+        $mess = [
+            'TENDC.required' => 'Chưa nhập thông tin',
+            'TENDC.alpha' => 'Vui lòng nhập ký tự chữ cái',
+            'DCNHAPXUAT.required' => 'Chưa nhập thông tin',
+            'DCNHAPXUAT.alpha' => 'Vui lòng nhập ký tự chữ cái'
+        ];
+
+        $request->validate($rules, $mess);
+
+        try {
+            
+            DCnhapxuat::create([
+                'TENDC' => $request->TENDC,
+                'DCNHAPXUAT' => $request->DCNHAPXUAT
+            ]);
+
+            return back()->with('alert', 'Tạo địa chỉ thành công');
+
+        } catch (Exception $err) {
+            return back()->with('err', 'Lỗi: '.$err->getMessage());
+        }
     }
 
     public function edit($id){   // Giao diện cập nhật dữ liệu: GET
-        
+
+        $diachi = DCnhapxuat::find($id);
+
+        return view("giaodien.app", [
+            'page' => "DCnhapxuat.ViewUpdataDiachi",
+            "diachi"=> $diachi
+        ]);
     }
 
-    public function update(Request $request, $id){   // Cập nhật lại dữ liệu: POST
-        
+    public function update(Request $request){   // Cập nhật lại dữ liệu: POST
+        $rules = [
+            'MADC' => 'required|numeric',
+            'TENDC' => 'required|alpha',
+            'DCNHAPXUAT' => 'required|alpha'
+        ];
+
+        $mess = [
+            'MADC.required' => 'Chưa có id thông tin',
+            'TENDC.required' => 'Chưa nhập thông tin',
+            'TENDC.alpha' => 'Vui lòng nhập ký tự chữ cái',
+            'DCNHAPXUAT.required' => 'Chưa nhập thông tin',
+            'DCNHAPXUAT.alpha' => 'Vui lòng nhập ký tự chữ cái'
+        ];
+
+        $request->validate($rules, $mess);
+
+        try {
+
+            DCnhapxuat::where('MADC', $request->MADC)
+            ->update([
+                'TENDC' => $request->TENDC,
+                'DCNHAPXUAT' => $request->DCNHAPXUAT
+            ]);
+
+            return back()->with('alert', 'Cập nhật địa chỉ thành công');
+
+        } catch (Exception $err) {
+            return back()->with('err', 'Lỗi: '.$err->getMessage());
+        }
     }
 
-    public function destroy($id){   // Xóa bỏ một dữ liệu: GET
-        
+    public function destroy(Request $request){   // Xóa bỏ một dữ liệu: GET
+        $rules = [
+            'MADC' => 'required|numeric'
+        ];
+
+        $mess = [
+            'MADC.required' => 'Chưa có id thông tin'
+        ];
+
+        $request->validate($rules, $mess);
+
+        $diachi = DCnhapxuat::find($request->MADC);
+
+        if($diachi){
+            $diachi->delete();
+            return back()->with('alert', 'Xóa thành công');
+        }
+
+        return back()->with('err', 'Không tồn tại dữ liệu cần xóa');
     }
 }

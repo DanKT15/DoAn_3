@@ -69,3 +69,114 @@ Route::prefix('phieunhapxuat')->as('phieunhapxuat.')->middleware(['auth'])->grou
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::prefix('diachinhapxuat')->as('diachinhapxuat.')->middleware(['auth'])->group(function () {
+
+    Route::get('/index', [DCnhapxuatController::class, 'index'])->name('index');
+    Route::get('/create', [DCnhapxuatController::class, 'create'])->name('create');
+    Route::post('/store', [DCnhapxuatController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [DCnhapxuatController::class, 'edit'])->name('edit');
+    Route::post('/update', [DCnhapxuatController::class, 'update'])->name('update');
+    Route::post('/destroy', [DCnhapxuatController::class, 'destroy'])->name('destroy');
+
+}); // kiet
+
+
+

@@ -193,8 +193,8 @@ class PhieunhapxuatController extends Controller
 
             return back()->with('alert', 'Tạo phiếu '.$Trangthai->TENTT.' thành công');
 
-        } catch (Exception $errors) {
-            return back()->withError($errors->getMessage())->withInput();
+        } catch (Exception $err) {
+            return back()->with('err', 'Lỗi: '.$err->getMessage());
         }
         
     }
@@ -259,7 +259,7 @@ class PhieunhapxuatController extends Controller
             return back()->with('alert', 'Cập nhật thành công');
 
         } catch (Exception $err) {
-            return back()->withError($err->getMessage())->withInput();
+            return back()->with('err', 'Lỗi: '.$err->getMessage());
         }
 
     }

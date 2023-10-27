@@ -98,7 +98,7 @@
     <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i> <span
           class="app-menu__label">Quản Lý Trạng Thái</span></a></li>
 
-    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-run'></i><span
+    <li><a class="app-menu__item" href="{{ route('diachinhapxuat.index') }}"><i class='app-menu__icon bx bx-run'></i><span
           class="app-menu__label">Quản Lý Địa Chỉ</span></a></li>
   </ul>
 </aside>
