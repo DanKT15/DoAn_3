@@ -178,5 +178,14 @@ Route::prefix('diachinhapxuat')->as('diachinhapxuat.')->middleware(['auth'])->gr
 
 }); // kiet
 
+Route::prefix('sanpham')->as('sanpham.')->middleware(['auth'])->group(function () {
 
+    Route::get('/index', [SanphamController::class, 'index'])->name('index');
+    Route::get('/create', [SanphamController::class, 'create'])->name('create');
+    Route::post('/store', [SanphamController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [SanphamController::class, 'edit'])->name('edit');
+    Route::post('/update', [SanphamController::class, 'update'])->name('update');
+    Route::post('/destroy', [SanphamController::class, 'destroy'])->name('destroy');
+
+}); // kiet
 

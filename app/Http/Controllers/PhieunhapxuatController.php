@@ -10,9 +10,11 @@ use App\Models\Phieunhapxuat;
 use App\Models\Sanpham;
 use App\Models\CTnhapxuat;
 use App\Models\Nhansu;
+use App\Models\User;
 use App\Models\DCnhapxuat;
 use App\Models\Trangthai;
 use App\Models\Tonkho;
+use App\Models\Kho;
 
 
 class PhieunhapxuatController extends Controller
@@ -207,13 +209,20 @@ class PhieunhapxuatController extends Controller
         $DCnhapxuat = DCnhapxuat::all();
         $Trangthai = Trangthai::all();
 
+        $idnv = Auth::id();
+        $nhansu =  Nhansu::firstWhere('MANV', $idnv);
+        $nhanvien =  User::firstWhere('MANV', $nhansu->MANV);
+        $kho =  Kho::firstWhere('MAKHO', $nhansu->MAKHO);
+
         return view("giaodien.app", [
             'page' => "phieunhapxuat.CTPhieu",
             'phieu' => $phieu,
             'ctphieu' => $ctphieu,
             'sanpham' => $sanpham,
             'DCnhapxuat' => $DCnhapxuat,
-            'Trangthai' => $Trangthai
+            'Trangthai' => $Trangthai,
+            'nhanvien'=> $nhanvien->TENNV,
+            'kho' => $kho->TENKHO
         ]);
     }
 

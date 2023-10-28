@@ -36,8 +36,9 @@
                     @if (!empty($phieu))
 
                        <h3>Mã phiếu: {{ $phieu['SOPHIEU'] }}</h3>
+                       <h3>Kho: {{ $kho }}</h3>
                        <b>Ngày lập: {{ $phieu['NGAYLAP'] }}</b><br>
-                       <b>Người lập: {{ $phieu['SOPHIEU'] }}</b><br>
+                       <b>Người lập: {{ $nhanvien }}</b><br>
 
                        @if (!empty($Trangthai))
                             @foreach ($Trangthai as $key => $values)

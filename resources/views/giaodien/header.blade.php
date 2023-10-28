@@ -89,6 +89,9 @@
     <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
           class="app-menu__label">Quản Lý Kho</span></a></li>
 
+    <li><a class="app-menu__item" href="{{ route('sanpham.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
+          class="app-menu__label">Quản Lý Sản Phẩm</span></a></li>
+
     <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-task'></i><span
           class="app-menu__label">Quản Lý Phân Loại</span></a></li>
 
