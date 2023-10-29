@@ -17,5 +17,5 @@ class Nhansu extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['MANV','MAKHO','TENCV','QUANTRI'];
+    protected $fillable = ['MANV','MAKHO','QUANTRI'];
 }

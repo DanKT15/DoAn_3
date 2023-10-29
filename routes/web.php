@@ -12,6 +12,7 @@ use App\Http\Controllers\LoaispController;
 use App\Http\Controllers\NhacungcapController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\TrangthaiController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -189,3 +190,14 @@ Route::prefix('sanpham')->as('sanpham.')->middleware(['auth'])->group(function (
 
 }); // kiet
 
+Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth'])->group(function () {
+
+    Route::get('/index', [UserController::class, 'index'])->name('index');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+    Route::post('/update', [UserController::class, 'update'])->name('update');
+    Route::post('/destroy', [UserController::class, 'destroy'])->name('destroy');
+
+}); // kiet

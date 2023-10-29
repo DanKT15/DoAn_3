@@ -12,7 +12,13 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     protected $primaryKey = 'MANV';
+
+    protected $dateFormat = 'd-m-Y';
+
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +29,10 @@ class User extends Authenticatable
         'TENNV',
         'email',
         'password',
+        'SDT',
+        'DC',
+        'HINHANH',
+        'GIOITINH',
     ];
 
     /**

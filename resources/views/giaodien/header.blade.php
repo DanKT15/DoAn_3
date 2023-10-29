@@ -72,7 +72,7 @@
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <div class="app-sidebar__user">
-      <p class="app-sidebar__user-name"><b>Admin</b></p>
+      <p class="app-sidebar__user-name"><b>{{ Auth::user()->TENNV }}</b></p>
       <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
   </div>
   <hr>
@@ -83,7 +83,7 @@
     <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
           class="app-menu__label">Quản Lý Phiếu</span></a></li>
 
-    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-user-voice'></i><span
+    <li><a class="app-menu__item" href="{{ route('taikhoan.index') }}"><i class='app-menu__icon bx bx-user-voice'></i><span
           class="app-menu__label">Quản Lý Nhân Sự</span></a></li>
 
     <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 

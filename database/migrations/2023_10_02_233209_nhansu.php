@@ -15,7 +15,6 @@ class Nhansu extends Migration
     {
         Schema::create('nhansu', function (Blueprint $table) {
             $table->increments('id')->from(1111);
-            $table->string('TENCV', 100);
             $table->char('QUANTRI', 12)->default('nhanvien');
         });
     }
