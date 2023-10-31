@@ -142,7 +142,7 @@ class UserController extends Controller
         $User = DB::table('nhansu')
             ->join('users','nhansu.MANV','=','users.MANV')
             ->join('kho','nhansu.MAKHO','=','kho.MAKHO')
-            ->select('users.MANV','users.TENNV','users.GIOITINH','kho.TENKHO','nhansu.QUANTRI')
+            ->select('users.MANV','users.TENNV', 'users.SDT', 'users.email', 'users.password', 'users.DC', 'users.HINHANH','users.GIOITINH','kho.MAKHO','nhansu.QUANTRI')
             ->where('users.MANV','=', $id)
             ->get();
         ;
@@ -155,64 +155,105 @@ class UserController extends Controller
 
     public function edit($id){   // Giao diện cập nhật dữ liệu: GET
 
-        $sanpham = User::find($id);
-        $Loaisp = User::all();
-        $Nhacungcap = User::all();
+        $User = DB::table('nhansu')
+            ->join('users','nhansu.MANV','=','users.MANV')
+            ->join('kho','nhansu.MAKHO','=','kho.MAKHO')
+            ->select('users.MANV','users.TENNV', 'users.SDT', 'users.email', 'users.password', 'users.DC', 'users.HINHANH','users.GIOITINH','kho.MAKHO','nhansu.QUANTRI')
+            ->where('users.MANV','=', $id)
+            ->get();
+        ;
+
+        $kho = Kho::all();
 
         return view("giaodien.app", [
             'page' => "User.ViewUpdataUser",
-            "sanpham"=> $sanpham,
-            "Loaisp"=> $Loaisp,
-            "Nhacungcap"=> $Nhacungcap
+            "user"=> $User,
+            "kho"=> $kho
         ]);
     }
 
     public function update(Request $request){   // Cập nhật lại dữ liệu: POST
         $rules = [
-            'MASP' => 'required|numeric',
-            'TENSP' => 'required|regex:/[[:alpha:]]\s/',
-            'MALOAI' => 'required|numeric',
-            'MANCC' => 'required|numeric',
-            'THONGTIN' => 'required|regex:/[[:alpha:]]\s/',
-            'GIASP' => 'required|numeric'
+            'MANV' => 'required|numeric',
+            'TENNV' => 'required|regex:/[[:alpha:]]/',
+            'password' => 'required|min:10',
+            'SDT' => 'required|numeric',
+            'DC' => 'required|regex:/[[:alpha:]]/',
+            'GIOITINH' => 'required|alpha',
+            'KHO' => 'required|numeric',
+            'QUYEN' => 'required|alpha',
+            'HINHANH' => 'file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
         $mess = [
-            'MASP.required' => 'Chưa có id thông tin',
+            'TENNV.required' => 'Chưa nhập thông tin',
+            'TENNV.regex' => 'Vui lòng nhập ký tự chữ cái',
 
-            'TENSP.required' => 'Chưa nhập thông tin',
-            'TENSP.regex' => 'Vui lòng nhập ký tự chữ cái',
+            'SDT.required' => 'Chưa chọn thông tin',
+            'SDT.numeric' => 'Vui lòng nhập chữ số',
 
-            'MALOAI.required' => 'Chưa chọn thông tin',
-            'MALOAI.numeric' => 'Vui lòng nhập chữ số',
+            'KHO.required' => 'Chưa chọn thông tin',
+            'KHO.numeric' => 'Vui lòng nhập chữ số',
 
-            'MANCC.required' => 'Chưa chọn thông tin',
-            'MANCC.numeric' => 'Vui lòng nhập chữ số',
+            'QUYEN.required' => 'Chưa chọn thông tin',
+            'QUYEN.alpha' => 'Vui lòng nhập ký tự chữ cái',
 
-            'THONGTIN.required' => 'Chưa nhập thông tin',
-            'THONGTIN.regex' => 'Vui lòng nhập ký tự chữ cái',
+            'DC.required' => 'Chưa nhập thông tin',
+            'DC.regex' => 'Vui lòng nhập ký tự chữ cái',
 
-            'GIASP.required' => 'Vui lòng nhập giá',
-            'GIASP.numeric' => 'Vui lòng nhập chữ số'
+            'GIOITINH.required'=> 'Chưa chọn thông tin',
+            'GIOITINH.alpha'=> 'Vui lòng nhập ký tự chữ cái',
+
+            'password.required' => 'Chưa nhập thông tin',
+            'password.min'=> 'Chiều dài tối thiểu 8 ký tự',
+
+            'HINHANH.mimes'=> 'Vui lòng chọn file định dạng ảnh',
         ];
 
         $request->validate($rules, $mess);
 
         try {
 
-            User::where('MASP', $request->MASP)
+            $user = User::where('email', $request->email)->first();
+
+            if (!empty($user)) {
+                return back()->with('err', 'Lỗi: Email đã được đăng ký');
+            }
+
+            if($request->file('HINHANH')) {
+
+                $image = $request->file('HINHANH');
+                $imagename = $image->getClientOriginalName();
+                $storedPath = $image->move('images', $imagename);
+
+            }
+            else {
+                $imagename = $request->OLDHINHANH;
+            }
+
+            User::where('MANV', $request->MANV)
             ->update([
-                'TENSP' => $request->TENSP,
-                'MALOAI' => $request->MALOAI,
-                'MANCC' => $request->MANCC,
-                'THONGTIN' => $request->THONGTIN,
-                'GIASP' => $request->GIASP
+                'TENNV' => $request->TENNV,
+                'password' => Hash::make($request->password),
+                'SDT' => $request->SDT,
+                'DC' => $request->DC,
+                'GIOITINH' => $request->GIOITINH,
+                'HINHANH' =>  $imagename,
             ]);
 
-            return back()->with('alert', 'Cập nhật sản phẩm thành công');
+            Nhansu::where('MANV', $request->MANV)
+            ->update([
+                'MAKHO' => $request->KHO,
+                'QUANTRI' => $request->QUYEN,
+            ]);
+
+            return back()->with('alert', 'Cập nhật tài khoản thành công');
+            
+            // return response('Tạo tài khoản thành công: '.$request->SDT , 200);
 
         } catch (Exception $err) {
             return back()->with('err', 'Lỗi: '.$err->getMessage());
+            // return response('Lỗi: '.$err->getMessage(), 401);
         }
     }
 

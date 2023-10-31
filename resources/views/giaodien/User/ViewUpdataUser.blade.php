@@ -4,14 +4,14 @@
   <main class="app-content">
     <div class="app-title">
       <ul class="app-breadcrumb breadcrumb">
-        <li class="breadcrumb-item">Danh sách sản phẩm</li>
-        <li class="breadcrumb-item">Cập nhật sản phẩm</li>
+        <li class="breadcrumb-item">Danh sách nhân viên</li>
+        <li class="breadcrumb-item">Cập nhật thông tin nhân viên</li>
       </ul>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="tile">
-          <h3 class="tile-title">Cập nhật sản phẩm</h3>
+          <h3 class="tile-title">Cập nhật thông tin nhân viên</h3>
           <div class="tile-body">
 
             @if (Session::Has('alert'))
@@ -26,84 +26,141 @@
               </div>
             @endif
 
-            <form class="row" action="{{ route('sanpham.update') }}" method="post">
+            <form class="row" action="{{ route('taikhoan.update') }}" method="post" enctype="multipart/form-data">
               @csrf
               
+              {{-- @dd($user[0]->TENNV) --}}
+
               <div class="form-group col-md-5">
-                <label class="control-label">Tên sản phẩm</label>
-                <input class="form-control" name="TENSP" type="text" value="{{ $sanpham->TENSP }}">
-                @error('TENSP')
+                <label class="control-label">Tên TENNV</label>
+                <input class="form-control" name="TENNV" type="text" value="{{ $user[0]->TENNV }}">
+                @error('TENNV')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+              </div>
+
+              {{-- <div class="form-group col-md-5">
+                <label class="control-label">email</label>
+                <input class="form-control" name="email" type="email" value="{{ $user[0]->email }}">
+                @error('email')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+              </div> --}}
+
+              <div class="form-group col-md-5">
+                <label class="control-label">password</label>
+                <input class="form-control" name="password" type="password" value="{{ $user[0]->password }}">
+                @error('password')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
 
               <div class="form-group col-md-5">
-                <label class="control-label">Thông tin sản phẩm</label>
-                <input class="form-control" name="THONGTIN" type="text" value="{{ $sanpham->THONGTIN }}">
-                @error('THONGTIN')
+                <label class="control-label">SDT</label>
+                <input class="form-control" name="SDT" type="tel" value="{{ $user[0]->SDT }}">
+                @error('SDT')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
 
               <div class="form-group col-md-5">
-                <label class="control-label">Giá sản phẩm</label>
-                <input class="form-control" name="GIASP" type="text" value="{{ $sanpham->GIASP }}">
-                @error('GIASP')
+                <label class="control-label">DC</label>
+                <input class="form-control" name="DC" type="text" value="{{ $user[0]->DC }}">
+                @error('DC')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
 
-
-              <div class="form-group col-md-3">
-                <label for="exampleSelect1" class="control-label">Phân loại</label>
-                <select class="form-control" name="MALOAI" id="exampleSelect1">
+              <div class="form-group col-md-5">
+                <label for="exampleSelect1" class="control-label">GIOITINH</label>
+                <select class="form-control" name="GIOITINH" id="exampleSelect1">
 
                   <option value="">Chọn</option> 
 
-                  @if (!empty($Loaisp))
-                      @foreach ($Loaisp as $keys => $values)
-                          @if ($sanpham->MALOAI == $values['MALOAI'])
-                              <option value="{{ $values['MALOAI'] }}" selected >{{ $values['TENLOAI'] }}</option>
-                          @else
-                              <option value="{{ $values['MALOAI'] }}">{{ $values['TENLOAI'] }}</option>
-                          @endif   
-                      @endforeach
-                  @endif
+                  @if ($user[0]->GIOITINH == 'Nam')
+                    <option value="Nam" selected>Nam</option> 
+                    <option value="Nữ">Nữ</option>
+                  @endif 
 
+                  @if ($user[0]->GIOITINH == 'Nữ')
+                    <option value="Nam">Nam</option> 
+                    <option value="Nữ" selected>Nữ</option>
+                  @endif 
+                  
                 </select>
-                @error('MALOAI')
+                @error('GIOITINH')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
 
-
-              <div class="form-group col-md-3">
-                <label for="exampleSelect1" class="control-label">Nhà cung cấp</label>
-                <select class="form-control" name="MANCC" id="exampleSelect1">
+              <div class="form-group col-md-5">
+                <label for="exampleSelect1" class="control-label">KHO</label>
+                <select class="form-control" name="KHO" id="exampleSelect1">
 
                   <option value="">Chọn</option> 
 
-                  @if (!empty($Nhacungcap))
-                      @foreach ($Nhacungcap as $keys => $values)
-                          @if ($sanpham->MANCC == $values['MANCC'])
-                              <option value="{{ $values['MANCC'] }}" selected >{{ $values['TENNCC'] }}</option>
+                  @isset($kho)
+                      @foreach ($kho as $keys => $values)
+                          @if ($user[0]->MAKHO == $values['MAKHO'])
+                              <option value="{{ $values['MAKHO'] }}" selected >{{ $values['TENKHO'] }}</option>
                           @else
-                              <option value="{{ $values['MANCC'] }}">{{ $values['TENNCC'] }}</option>
+                              <option value="{{ $values['MAKHO'] }}">{{ $values['TENKHO'] }}</option>
                           @endif   
                       @endforeach
-                  @endif
+                  @endisset
 
                 </select>
-                @error('MANCC')
+                @error('KHO')
                     <span style="color: red">{{ $message }}</span>
                 @enderror
               </div>
 
-              <input type="hidden" name="MASP" value="{{ $sanpham->MASP }}">
+              <div class="form-group col-md-5">
+                <label for="exampleSelect1" class="control-label">QUYEN</label>
+                <select class="form-control" name="QUYEN" id="exampleSelect1">
 
-            </div>
-                <input class="btn btn-save" type="submit" name="submit" value="Cập nhật">
-                <a class="btn btn-cancel" href="{{ route('sanpham.index') }}">Hủy bỏ</a>
+                  <option value="">Chọn</option> 
+
+                  @if ($user[0]->QUANTRI == 'quantri')
+                    <option value="quantri" selected>Admin</option> 
+                    <option value="nhanvien">Staff</option> 
+                  @endif 
+
+                  @if ($user[0]->QUANTRI == 'nhanvien')
+                    <option value="quantri">Admin</option> 
+                    <option value="nhanvien" selected>Staff</option> 
+                  @endif
+
+                </select>
+                @error('QUYEN')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+              </div>
+
+              <div class="form-group col-md-5">
+                <label class="control-label">HINHANH</label>
+                <div id="myfileupload">
+                  <input type="file" id="uploadfile" name="HINHANH"/>
+                </div>
+                <div id="thumbbox">
+                  <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                  <a class="removeimg" href="javascript:"></a>
+                </div>
+                <div id="boxchoice">
+                  <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                  <p style="clear:both"></p>
+                </div>
+                @error('HINHANH')
+                    <span style="color: red">{{ $message }}</span>
+                @enderror
+              </div>
+
+              <input type="hidden" name="OLDHINHANH" value="{{ $user[0]->HINHANH }}">
+              <input type="hidden" name="MANV" value="{{ $user[0]->MANV }}">
+
+              </div>
+                <input class="btn btn-save" type="submit" name="submit" value="Lưu Lại">
+                <a class="btn btn-cancel" href="{{ route('taikhoan.index') }}">Hủy bỏ</a>
               </div>
 
             </form>
