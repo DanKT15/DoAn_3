@@ -75,17 +75,21 @@
                 <label for="exampleSelect1" class="control-label">GIOITINH</label>
                 <select class="form-control" name="GIOITINH" id="exampleSelect1">
 
-                  <option value="">Chọn</option> 
+                  <option value="">Chọn</option>  
 
-                  @if ($user[0]->GIOITINH == 'Nam')
-                    <option value="Nam" selected>Nam</option> 
-                    <option value="Nữ">Nữ</option>
-                  @endif 
-
-                  @if ($user[0]->GIOITINH == 'Nữ')
-                    <option value="Nam">Nam</option> 
-                    <option value="Nữ" selected>Nữ</option>
-                  @endif 
+                  @switch($user[0]->GIOITINH)
+                      @case('Nam')
+                          <option value="Nam" selected>Nam</option> 
+                          <option value="Nữ">Nữ</option>
+                          @break
+                      @case('Nữ')
+                          <option value="Nam">Nam</option> 
+                          <option value="Nữ" selected>Nữ</option>
+                          @break
+                      @default
+                          <option value="Nam">Nam</option> 
+                          <option value="Nữ" >Nữ</option>
+                  @endswitch
                   
                 </select>
                 @error('GIOITINH')

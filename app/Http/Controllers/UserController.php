@@ -142,7 +142,7 @@ class UserController extends Controller
         $User = DB::table('nhansu')
             ->join('users','nhansu.MANV','=','users.MANV')
             ->join('kho','nhansu.MAKHO','=','kho.MAKHO')
-            ->select('users.MANV','users.TENNV', 'users.SDT', 'users.email', 'users.password', 'users.DC', 'users.HINHANH','users.GIOITINH','kho.MAKHO','nhansu.QUANTRI')
+            ->select('users.MANV','users.TENNV', 'users.SDT', 'users.email', 'users.password', 'users.DC', 'users.HINHANH','users.GIOITINH','kho.TENKHO','nhansu.QUANTRI')
             ->where('users.MANV','=', $id)
             ->get();
         ;
