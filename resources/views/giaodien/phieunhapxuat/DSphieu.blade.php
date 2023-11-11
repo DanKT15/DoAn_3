@@ -27,10 +27,23 @@
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
-
-                          <a class="btn btn-add btn-sm" href="{{ route('phieunhapxuat.create') }}" title="Thêm"><i class="fas fa-plus"></i>Tạo Phiếu Mới</a></div>
-
+                          <a class="btn btn-add btn-sm" href="{{ route('phieunhapxuat.create') }}" title="Thêm"><i class="fas fa-plus"></i>Tạo Phiếu Mới</a>
+                        </div>
                     </div>
+
+                    <form class="row" action="{{ route('phieunhapxuat.select') }}" method="post">
+                        @csrf
+                        <div class="form-group col-md-5">
+                            <input class="form-control" type="date" name="date1">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input class="form-control" type="date" name="date2">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <button class="form-control" type="submit">Lọc</button>
+                        </div>
+                    </form>
+
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                             <tr>

@@ -29,7 +29,7 @@
             <form class="row" action="{{ route('taikhoan.store') }}" method="post" enctype="multipart/form-data">
               @csrf
               
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">Tên TENNV</label>
                 <input class="form-control" name="TENNV" type="text" value="{{ old("TENNV") }}">
                 @error('TENNV')
@@ -37,7 +37,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">email</label>
                 <input class="form-control" name="email" type="email" value="{{ old("email") }}">
                 @error('email')
@@ -45,7 +45,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">password</label>
                 <input class="form-control" name="password" type="password" value="{{ old("password") }}">
                 @error('password')
@@ -53,7 +53,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">SDT</label>
                 <input class="form-control" name="SDT" type="tel" value="{{ old("SDT") }}">
                 @error('SDT')
@@ -61,7 +61,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">DC</label>
                 <input class="form-control" name="DC" type="text" value="{{ old("DC") }}">
                 @error('DC')
@@ -69,7 +69,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label for="exampleSelect1" class="control-label">GIOITINH</label>
                 <select class="form-control" name="GIOITINH" id="exampleSelect1">
 
@@ -96,7 +96,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label for="exampleSelect1" class="control-label">KHO</label>
                 <select class="form-control" name="KHO" id="exampleSelect1">
 
@@ -118,7 +118,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label for="exampleSelect1" class="control-label">QUYEN</label>
                 <select class="form-control" name="QUYEN" id="exampleSelect1">
 
@@ -145,7 +145,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">HINHANH</label>
                 <div id="myfileupload">
                   <input type="file" id="uploadfile" name="HINHANH"/>

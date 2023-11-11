@@ -13,6 +13,7 @@ use App\Http\Controllers\NhacungcapController;
 use App\Http\Controllers\SanphamController;
 use App\Http\Controllers\TrangthaiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +63,7 @@ Route::prefix('phieunhapxuat')->as('phieunhapxuat.')->middleware(['auth'])->grou
     Route::get('/edit/{id}', [PhieunhapxuatController::class, 'edit'])->name('edit');
     Route::post('/update', [PhieunhapxuatController::class, 'update'])->name('update');
     Route::post('/destroy', [PhieunhapxuatController::class, 'destroy'])->name('destroy');
-
+    Route::post('/index', [PhieunhapxuatController::class, 'select'])->name('select');
 }); // kiet
 
 
@@ -201,3 +202,5 @@ Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth'])->group(function
     Route::post('/destroy', [UserController::class, 'destroy'])->name('destroy');
 
 }); // kiet
+
+Route::get('dashboard/index', [dashboard::class, 'index'])->name('dashboard');

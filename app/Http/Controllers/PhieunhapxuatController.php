@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\Phieunhapxuat;
 use App\Models\Sanpham;
 use App\Models\CTnhapxuat;
@@ -204,6 +204,11 @@ class PhieunhapxuatController extends Controller
     public function show($id){   // Lấy chi tiết của một dữ liệu: GET
 
         $phieu = Phieunhapxuat::find($id);
+
+        if (empty($phieu)) {
+            return back()->with('err', 'Phiếu nhập xuất này không tồn tại');
+        } 
+
         $ctphieu = CTnhapxuat::where('MAPHIEU', $id)->get();
         $sanpham = Sanpham::all();
         $DCnhapxuat = DCnhapxuat::all();
@@ -293,5 +298,42 @@ class PhieunhapxuatController extends Controller
         }
 
         return back()->with('err', 'Không tồn tại dữ liệu cần xóa');
+    }
+
+    public function select(Request $request){
+        // SELECT *
+        // FROM phieunhapxuat p
+        // WHERE p.NGAYLAP
+        // BETWEEN '2023/11/1' AND '2023/11/30';
+
+        $rules = [
+            'date1' => 'required|date',
+            'date2' => 'required|date'
+        ];
+
+        $mess = [
+            'date1.required' => 'Chưa có id thông tin',
+            'date2.required' => 'Chưa có id thông tin'
+        ];
+
+        $request->validate($rules, $mess);
+
+        if (strtotime($request->date1) > strtotime($request->date2)) {
+            return back()->with('err', 'Ngày tháng không hợp lệ');
+        }
+
+        $phieu = Phieunhapxuat::whereBetween('NGAYLAP', [$request->date1, $request->date2])->get();
+        $Trangthai = Trangthai::all();
+
+        if(empty($phieu)){
+            return back()->with('err', 'Không tồn tại dữ liệu cần lọc');
+        }
+
+        return view("giaodien.app", [
+            'page' => "phieunhapxuat.DSphieu",
+            'phieu' => $phieu,
+            'Trangthai'=> $Trangthai
+        ]);
+
     }
 }

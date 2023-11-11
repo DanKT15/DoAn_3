@@ -13,7 +13,7 @@ class Phieunhapxuat extends Model
 
     protected $primaryKey = 'id';
 
-    protected $dateFormat = 'd-m-Y';
+    protected $dateFormat = 'd-m-y';
 
     public $timestamps = false;
 

@@ -29,7 +29,7 @@
             <form class="row" action="{{ route('diachinhapxuat.store') }}" method="post">
               @csrf
               
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">Tên địa chỉ</label>
                 <input class="form-control" name="TENDC" type="text" value="{{ old("TENDC") }}">
                 @error('TENDC')
@@ -37,7 +37,7 @@
                 @enderror
               </div>
 
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">Chi tiết địa chỉ</label>
                 <input class="form-control" name="DCNHAPXUAT" type="text" value="{{ old("DCNHAPXUAT") }}">
                 @error('DCNHAPXUAT')

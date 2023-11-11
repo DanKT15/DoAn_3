@@ -29,7 +29,7 @@
             <form class="row" action="{{ route('phieunhapxuat.store') }}" method="post">
               @csrf
               
-              <div class="form-group col-md-5">
+              <div class="form-group col-md-6">
                 <label class="control-label">Mã Phiếu</label>
                 <input class="form-control" name="sophieu" type="text" value="{{ old("sophieu") }}">
                 @error('sophieu')
@@ -89,7 +89,7 @@
                   </tr>
                   <tr>
                       <td>
-                        <div class="form-group col-md-10">
+                        <div class="form-group col-md-12">
                           <select class="form-control" name="sp[0][idsp]" id="exampleSelect1">
             
                             <option value="">Chọn</option> 
@@ -112,7 +112,7 @@
                       </td>
 
                       <td>
-                        <div class="form-group col-md-10">
+                        <div class="form-group col-md-12">
                           <input class="form-control" name="sp[0][slsp]" type="number" value="{{ old("sp.0.slsp") }}">
                           @error("sp.0.slsp")
                               <span style="color: red">{{ $message }}</span>
@@ -140,7 +140,7 @@
                           
                           <tr>
                             <td>
-                              <div class="form-group col-md-10">
+                              <div class="form-group col-md-12">
                                 <select class="form-control" name="sp[{{ $i }}][idsp]" id="exampleSelect1">
                   
                                   <option value="">Chọn</option> 
@@ -167,7 +167,7 @@
                             </td>
       
                             <td>
-                              <div class="form-group col-md-10">
+                              <div class="form-group col-md-12">
                                 <input class="form-control" name="sp[{{ $i }}][slsp]" type="number" value="{{ $resul[$i]['slsp'] }}">
                                 @error("sp.".$i.".slsp")
                                     <span style="color: red">{{ $message }}</span>
@@ -210,8 +210,8 @@
     $("#dynamic-ar").click(function () {
         ++i;
         $("#dynamicAddRemove").append('<tr id = "id'+ i +'"></tr>');
-        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><select class="form-control" name="sp['+ i +'][idsp]" id="exampleSelect1"><option value="">Chọn</option>@foreach ($Sanpham as $item)<option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>@endforeach</select>@error("sp.'+ i +'.idsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
-        $("#id"+ i +"").append('<td><div class="form-group col-md-10"><input class="form-control" name="sp['+ i +'][slsp]" type="number"">@error("sp.'+ i +'.slsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-12"><select class="form-control" name="sp['+ i +'][idsp]" id="exampleSelect1"><option value="">Chọn</option>@foreach ($Sanpham as $item)<option value="{{ $item->MASP }}">{{ $item->TENSP }}</option>@endforeach</select>@error("sp.'+ i +'.idsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
+        $("#id"+ i +"").append('<td><div class="form-group col-md-12"><input class="form-control" name="sp['+ i +'][slsp]" type="number"">@error("sp.'+ i +'.slsp")<span style="color: red">{{ $message }}</span>@enderror</div></td>');
         $("#id"+ i +"").append('<td><div class="form-group col-md-10"><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></div></td>');
     });
     $(document).on('click', '.remove-input-field', function () {

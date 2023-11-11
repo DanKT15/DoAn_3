@@ -147,6 +147,10 @@ class UserController extends Controller
             ->get();
         ;
 
+        if (empty($User)) {
+            return back()->with('err', 'Tài khoản này không tồn tại');
+        } 
+        
         return view("giaodien.app", [
             'page' => "User.CTUser",
             'User'=> $User

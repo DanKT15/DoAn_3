@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
       <!-- Main CSS-->
-  <link rel="stylesheet" type="text/css" href={{ asset("/admin/css/main.css") }}>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-  <!-- or -->
-  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-  <!-- Font-icon css-->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+      <link rel="stylesheet" type="text/css" href={{ asset("/admin/css/main.css") }}>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+      <!-- or -->
+      <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+      <!-- Font-icon css-->
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
-    <title>Đăng nhập quản trị</title>
 
-    <style>
-        body{
-        background:#eee;
-        }
-        .card {
-        box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-        }
-        .card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 0 solid rgba(0,0,0,.125);
-        border-radius: 1rem;
-        }
-        .text-reset {
-        --bs-text-opacity: 1;
-        color: inherit!important;
-        }
-        a {
-        color: #5465ff;
-        text-decoration: none;
-        }
-  </style>
+      {{-- <link href={{ asset("/chart/css/bootstrap.min.css") }} rel="stylesheet">
+	<link href={{ asset("/chart/css/font-awesome.min.css") }} rel="stylesheet">
+	<link href={{ asset("/chart/css/datepicker3.css") }} rel="stylesheet">
+	<link href={{ asset("/chart/css/styles.css") }} rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> --}}
+
+
+      <title>Quan Ly Kho Hang</title>
+
+      <style>
+            body{
+            background:#eee;
+            }
+            .card {
+            box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+            }
+            .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid rgba(0,0,0,.125);
+            border-radius: 1rem;
+            }
+            .text-reset {
+            --bs-text-opacity: 1;
+            color: inherit!important;
+            }
+            a {
+            color: #5465ff;
+            text-decoration: none;
+            }
+      </style>
 </head>
 <body>
 
@@ -77,7 +85,7 @@
   </div>
   <hr>
   <ul class="app-menu">
-    <li><a class="app-menu__item" href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-dollar'></i><span
+    <li><a class="app-menu__item" href="{{ route('dashboard') }}"><i class='app-menu__icon bx bx-dollar'></i><span
           class="app-menu__label">Dashboard</span></a></li>
 
     <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
