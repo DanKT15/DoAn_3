@@ -53,6 +53,118 @@
             text-decoration: none;
             }
       </style>
+
+
+      <script>
+            window.onload = function () {
+            
+                  var bieudocot = new CanvasJS.Chart("bieudocot", {
+                        animationEnabled: true,
+                        exportEnabled: true,
+                        theme: "light1", // "light1", "light2", "dark1", "dark2"
+                        title:{
+                              text: "Simple Column Chart with Index Labels"
+                        },
+                        axisY: {
+                              includeZero: true
+                        },
+                        data: [{
+                              type: "column", //change type to bar, line, area, pie, etc
+                              //indexLabel: "{y}", //Shows y value on all Data Points
+                              indexLabelFontColor: "#5A5757",
+                              indexLabelFontSize: 16,
+                              indexLabelPlacement: "outside",
+                              dataPoints: [
+                                    { x: 10, y: 15 },
+                                    { x: 20, y: 55 },
+                                    { x: 30, y: 50 },
+                                    { x: 40, y: 65 },
+                                    { x: 50, y: 92, indexLabel: "\u2605 Highest" },
+                                    { x: 60, y: 68 },
+                                    { x: 70, y: 38 },
+                                    { x: 80, y: 71 },
+                                    { x: 90, y: 54 },
+                                    { x: 100, y: 60 },
+                                    { x: 110, y: 36 },
+                                    { x: 120, y: 49 },
+                                    { x: 130, y: 21, indexLabel: "\u2691 Lowest" }
+                              ]
+                        }]
+                  });
+                  bieudocot.render();
+
+                  // -----------------------------------------------------
+                  var bieudotron = new CanvasJS.Chart("bieudotron", {
+                        theme: "light2", // "light1", "light2", "dark1", "dark2"
+                        exportEnabled: true,
+                        animationEnabled: true,
+                        title: {
+                              text: "Desktop Browser Market Share in 2016"
+                        },
+                        data: [{
+                              type: "pie",
+                              startAngle: 25,
+                              toolTipContent: "<b>{label}</b>: {y}%",
+                              showInLegend: "true",
+                              legendText: "{label}",
+                              indexLabelFontSize: 16,
+                              indexLabel: "{label} - {y}%",
+                              dataPoints: [
+                                    { y: 51.08, label: "Chrome" },
+                                    { y: 27.34, label: "Internet Explorer" },
+                                    { y: 10.62, label: "Firefox" },
+                                    { y: 5.02, label: "Microsoft Edge" },
+                                    { y: 4.07, label: "Safari" },
+                                    { y: 1.22, label: "Opera" },
+                                    { y: 0.44, label: "Others" }
+                              ]
+                        }]
+                  });
+                  bieudotron.render();
+
+                  // -----------------------------------------------------
+                  var bieudoduong = new CanvasJS.Chart("bieudoduong", {
+                        theme: "light1", // "light1", "light2", "dark1"
+                        animationEnabled: true,
+                        exportEnabled: true,
+                        title: {
+                              text: "Top 10 Most Viewed YouTube Videos"
+                        },
+                        axisX: {
+                              margin: 10,
+                              labelPlacement: "inside",
+                              tickPlacement: "inside"
+                        },
+                        axisY2: {
+                              title: "Views (in billion)",
+                              titleFontSize: 14,
+                              includeZero: true,
+                              suffix: "bn"
+                        },
+                        data: [{
+                              type: "bar",
+                              axisYType: "secondary",
+                              yValueFormatString: "#,###.##bn",
+                              indexLabel: "{y}",
+                              dataPoints: [
+                                    { label: "Learning Colors", y: 4.91 },
+                                    { label: "Uptown Funk", y: 4.96 },
+                                    { label: "Wheels on the Bus", y: 5.36 },
+                                    { label: "Phonics Song with Two Words", y: 5.36 },
+                                    { label: "See You Again", y: 5.94 },
+                                    { label: "Shape of You", y: 6.02 },
+                                    { label: "Bath Song", y: 6.26 },
+                                    { label: "Johny Johny Yes Papa", y: 6.73 },
+                                    { label: "Despacito", y: 8.20 },
+                                    { label: "Baby Shark Dance", y: 13.01 }
+                              ]
+                        }]
+                  });
+                  bieudoduong.render();
+
+            }
+      </script>
+
 </head>
 <body>
 
