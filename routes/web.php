@@ -204,3 +204,4 @@ Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth'])->group(function
 }); // kiet
 
 Route::get('dashboard/index', [dashboard::class, 'index'])->name('dashboard');
+Route::get('dashboard/sanpham/{id}', [dashboard::class, 'Detail_SP'])->name('dashboard-sanpham');

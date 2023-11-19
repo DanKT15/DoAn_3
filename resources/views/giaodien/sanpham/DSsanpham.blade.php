@@ -41,6 +41,7 @@
                                 <th>Địa chỉ NCC</th>
                                 <th>Thông tin</th>
                                 <th>Giá sản phẩm</th>
+                                <th>Thống kê</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
@@ -73,6 +74,7 @@
                                         
                                         <td>{{ $value['THONGTIN'] }}</td>
                                         <td>{{ $value['GIASP'] }}</td>
+                                        <td><a href={{ route('dashboard-sanpham', ['id' => $value['MASP']]) }}>Dashboard</a></td>
 
                                         <td>
                                             
