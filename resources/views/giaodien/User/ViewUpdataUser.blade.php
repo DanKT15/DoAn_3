@@ -49,7 +49,7 @@
 
               <div class="form-group col-md-5">
                 <label class="control-label">password</label>
-                <input class="form-control" name="password" type="password" value="{{ $user[0]->password }}">
+                <input class="form-control" name="password" type="password" value="">
                 @error('password')
                     <span style="color: red">{{ $message }}</span>
                 @enderror

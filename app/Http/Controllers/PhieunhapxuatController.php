@@ -21,7 +21,26 @@ class PhieunhapxuatController extends Controller
 {
     public function index(){   // Giao diện hiển thị toàn bộ dữ liệu: GET
 
-        $phieu = Phieunhapxuat::all();
+        // SELECT *
+        // FROM phieunhapxuat p
+        // INNER JOIN users u ON u.MANV = p.MANV
+        // INNER JOIN nhansu n ON n.MANV = u.MANV
+        // INNER JOIN kho k ON k.MAKHO = n.MAKHO
+        // WHERE k.MAKHO = 1111
+
+        $idnhanvien = Auth::id();
+        $nhanvien =  Nhansu::firstWhere('MANV', $idnhanvien);
+        $makho = $nhanvien->MAKHO;
+
+        $phieu = DB::table('phieunhapxuat')
+        ->join('users','users.MANV','=','phieunhapxuat.MANV')
+        ->join('nhansu','nhansu.MANV','=','users.MANV')
+        ->join('kho','kho.MAKHO','=','nhansu.MAKHO')
+        ->where('kho.MAKHO', $makho)
+        ->select('phieunhapxuat.id','phieunhapxuat.SOPHIEU','phieunhapxuat.MANV','phieunhapxuat.MADC','phieunhapxuat.MATT', 'phieunhapxuat.NGAYLAP')
+        ->get();
+    
+
         $Trangthai = Trangthai::all();
 
         return view("giaodien.app", [

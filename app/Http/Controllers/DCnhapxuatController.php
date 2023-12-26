@@ -27,15 +27,13 @@ class DCnhapxuatController extends Controller
 
     public function store(Request $request){   // Lưu trữ dữ liệu mới: POST
         $rules = [
-            'TENDC' => 'required|alpha',
-            'DCNHAPXUAT' => 'required|alpha'
+            'TENDC' => 'required',
+            'DCNHAPXUAT' => 'required'
         ];
 
         $mess = [
             'TENDC.required' => 'Chưa nhập thông tin',
-            'TENDC.alpha' => 'Vui lòng nhập ký tự chữ cái',
             'DCNHAPXUAT.required' => 'Chưa nhập thông tin',
-            'DCNHAPXUAT.alpha' => 'Vui lòng nhập ký tự chữ cái'
         ];
 
         $request->validate($rules, $mess);
@@ -67,16 +65,14 @@ class DCnhapxuatController extends Controller
     public function update(Request $request){   // Cập nhật lại dữ liệu: POST
         $rules = [
             'MADC' => 'required|numeric',
-            'TENDC' => 'required|alpha',
-            'DCNHAPXUAT' => 'required|alpha'
+            'TENDC' => 'required',
+            'DCNHAPXUAT' => 'required'
         ];
 
         $mess = [
             'MADC.required' => 'Chưa có id thông tin',
             'TENDC.required' => 'Chưa nhập thông tin',
-            'TENDC.alpha' => 'Vui lòng nhập ký tự chữ cái',
             'DCNHAPXUAT.required' => 'Chưa nhập thông tin',
-            'DCNHAPXUAT.alpha' => 'Vui lòng nhập ký tự chữ cái'
         ];
 
         $request->validate($rules, $mess);

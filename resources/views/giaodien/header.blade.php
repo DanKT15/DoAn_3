@@ -54,12 +54,11 @@
             }
       </style>
 
-
       @php
 
-            if (isset($data_BD_Cot)) {
+            if (isset($data_BD_Cot_nhap) && isset($data_BD_Cot_xuat) && isset($data_tron) && isset($data_duong)) {
 
-                  $data_cot = json_encode($data_BD_Cot, JSON_NUMERIC_CHECK);
+                  // echo $data_tron[0]['y'];
 
                   echo '<script>
                         window.onload = function () {
@@ -70,14 +69,14 @@
                                           text: "Biểu đồ nhập xuất kho qua từng tháng"
                                     },	
                                     axisY: {
-                                          title: "Billions of Barrels",
+                                          title: "Nhập",
                                           titleFontColor: "#4F81BC",
                                           lineColor: "#4F81BC",
                                           labelFontColor: "#4F81BC",
                                           tickColor: "#4F81BC"
                                     },
                                     axisY2: {
-                                          title: "Millions of Barrels/day",
+                                          title: "Xuất",
                                           titleFontColor: "#C0504E",
                                           lineColor: "#C0504E",
                                           labelFontColor: "#C0504E",
@@ -92,43 +91,43 @@
                                     },
                                     data: [{
                                           type: "column",
-                                          name: "Proven Oil Reserves (bn)",
-                                          legendText: "Proven Oil Reserves",
+                                          name: "Số lượng nhập (sản phẩm)",
+                                          legendText: "Số lượng nhập",
                                           showInLegend: true, 
                                           dataPoints:[
-                                                { label: "Tháng 1", y: 266.21 },
-                                                { label: "Tháng 2", y: 302.25 },
-                                                { label: "Tháng 3", y: 157.20 },
-                                                { label: "Tháng 4", y: 148.77 },
-                                                { label: "Tháng 5", y: 101.50 },
-                                                { label: "Tháng 6", y: 97.8 },
-                                                { label: "Tháng 7", y: 266.21 },
-                                                { label: "Tháng 8", y: 302.25 },
-                                                { label: "Tháng 9", y: 157.20 },
-                                                { label: "Tháng 10", y: 148.77 },
-                                                { label: "Tháng 11", y: 101.50 },
-                                                { label: "Tháng 12", y: 97.8 }
+                                                { label: "Tháng 1", y: '.$data_BD_Cot_nhap[0].' },
+                                                { label: "Tháng 2", y: '.$data_BD_Cot_nhap[1].' },
+                                                { label: "Tháng 3", y: '.$data_BD_Cot_nhap[2].' },
+                                                { label: "Tháng 4", y: '.$data_BD_Cot_nhap[3].' },
+                                                { label: "Tháng 5", y: '.$data_BD_Cot_nhap[4].' },
+                                                { label: "Tháng 6", y: '.$data_BD_Cot_nhap[5].' },
+                                                { label: "Tháng 7", y: '.$data_BD_Cot_nhap[6].' },
+                                                { label: "Tháng 8", y: '.$data_BD_Cot_nhap[7].' },
+                                                { label: "Tháng 9", y: '.$data_BD_Cot_nhap[8].' },
+                                                { label: "Tháng 10", y: '.$data_BD_Cot_nhap[9].' },
+                                                { label: "Tháng 11", y: '.$data_BD_Cot_nhap[10].' },
+                                                { label: "Tháng 12", y: '.$data_BD_Cot_nhap[11].' },
                                           ]
                                     },
                                     {
                                           type: "column",	
-                                          name: "Oil Production (million/day)",
-                                          legendText: "Oil Production",
+                                          name: "Số lượng xuất (sản phẩm)",
+                                          legendText: "Số lượng xuất",
                                           axisYType: "secondary",
                                           showInLegend: true,
                                           dataPoints:[
-                                                { label: "Tháng 1", y: 10.46 },
-                                                { label: "Tháng 2", y: 2.27 },
-                                                { label: "Tháng 3", y: 3.99 },
-                                                { label: "Tháng 4", y: 4.45 },
-                                                { label: "Tháng 5", y: 2.92 },
-                                                { label: "Tháng 6", y: 3.1 },
-                                                { label: "Tháng 7", y: 10.46 },
-                                                { label: "Tháng 8", y: 2.27 },
-                                                { label: "Tháng 9", y: 3.99 },
-                                                { label: "Tháng 10", y: 4.45 },
-                                                { label: "Tháng 11", y: 2.92 },
-                                                { label: "Tháng 12", y: 3.1 },
+                                                { label: "Tháng 1", y: '.$data_BD_Cot_xuat[0].' },
+                                                { label: "Tháng 2", y: '.$data_BD_Cot_xuat[1].' },
+                                                { label: "Tháng 3", y: '.$data_BD_Cot_xuat[2].' },
+                                                { label: "Tháng 4", y: '.$data_BD_Cot_xuat[3].' },
+                                                { label: "Tháng 5", y: '.$data_BD_Cot_xuat[4].' },
+                                                { label: "Tháng 6", y: '.$data_BD_Cot_xuat[5].' },
+                                                { label: "Tháng 7", y: '.$data_BD_Cot_xuat[6].' },
+                                                { label: "Tháng 8", y: '.$data_BD_Cot_xuat[7].' },
+                                                { label: "Tháng 9", y: '.$data_BD_Cot_xuat[8].' },
+                                                { label: "Tháng 10", y: '.$data_BD_Cot_xuat[9].' },
+                                                { label: "Tháng 11", y: '.$data_BD_Cot_xuat[10].' },
+                                                { label: "Tháng 12", y: '.$data_BD_Cot_xuat[11].' },
                                           ]
                                     }]
                               });
@@ -142,10 +141,10 @@
                                           e.dataSeries.visible = true;
                                     }
                                     bieudocot.render();
-                              }
+                              }';
 
                               // -----------------------------------------------------
-                              var bieudotron = new CanvasJS.Chart("bieudotron", {
+                        echo ' var bieudotron = new CanvasJS.Chart("bieudotron", {
                                     theme: "light2", // "light1", "light2", "dark1", "dark2"
                                     exportEnabled: true,
                                     animationEnabled: true,
@@ -160,26 +159,24 @@
                                           legendText: "{label}",
                                           indexLabelFontSize: 16,
                                           indexLabel: "{label} - {y}%",
-                                          dataPoints: [
-                                                { y: 51.08, label: "Chrome" },
-                                                { y: 27.34, label: "Internet Explorer" },
-                                                { y: 10.62, label: "Firefox" },
-                                                { y: 5.02, label: "Microsoft Edge" },
-                                                { y: 4.07, label: "Safari" },
-                                                { y: 1.22, label: "Opera" },
-                                                { y: 0.44, label: "Others" }
-                                          ]
+                                          dataPoints: [';
+                                                
+                                                foreach ($data_tron as $key => $value) {
+                                                      echo '{ y: '.$value['y'].', label: "'.$value['label'].'" },';
+                                                }
+
+                                          echo ']
                                     }]
                               });
-                              bieudotron.render();
+                              bieudotron.render();';
 
                               // -----------------------------------------------------
-                              var bieudoduong = new CanvasJS.Chart("bieudoduong", {
+                        echo ' var bieudoduong = new CanvasJS.Chart("bieudoduong", {
                                     theme: "light1", // "light1", "light2", "dark1"
                                     animationEnabled: true,
                                     exportEnabled: true,
                                     title: {
-                                          text: "Top 10 Most Viewed YouTube Videos"
+                                          text: "Số lượng sản phẩm trong kho"
                                     },
                                     axisX: {
                                           margin: 10,
@@ -187,34 +184,32 @@
                                           tickPlacement: "inside"
                                     },
                                     axisY2: {
-                                          title: "Views (in billion)",
+                                          title: "số lượng sản phẩm",
                                           titleFontSize: 14,
                                           includeZero: true,
-                                          suffix: "cm"
+                                          suffix: ""
                                     },
                                     data: [{
                                           type: "bar",
                                           axisYType: "secondary",
-                                          yValueFormatString: "#,###.##bn",
+                                          yValueFormatString: "#,###.##",
                                           indexLabel: "{y}",
-                                          dataPoints: [
-                                                { label: "Learning Colors", y: 4.91 },
-                                                { label: "Uptown Funk", y: 4.96 },
-                                                { label: "Wheels on the Bus", y: 5.36 },
-                                                { label: "Phonics Song with Two Words", y: 5.36 },
-                                                { label: "See You Again", y: 5.94 },
-                                                { label: "Shape of You", y: 6.02 },
-                                                { label: "Bath Song", y: 6.26 },
-                                                { label: "Johny Johny Yes Papa", y: 6.73 },
-                                                { label: "Despacito", y: 8.20 },
-                                                { label: "Baby Shark Dance", y: 13.01 }
-                                          ]
+                                          dataPoints: [';
+
+                                                foreach ($data_duong as $key => $value) {
+                                                      echo '{ label: "'.$value['label'].'", y: '.$value['y'].' },';
+                                                }
+
+                                          echo ']
                                     }]
                               });
                               bieudoduong.render();
 
                         }
                   </script>';
+
+
+
             };
             
       @endphp
@@ -252,32 +247,38 @@
   </div>
   <hr>
   <ul class="app-menu">
-    <li><a class="app-menu__item" href="{{ route('dashboard') }}"><i class='app-menu__icon bx bx-dollar'></i><span
-          class="app-menu__label">Dashboard</span></a></li>
 
-    <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
-          class="app-menu__label">Quản Lý Phiếu</span></a></li>
+      {{-- @dd(Auth::user()->QUANTRI) --}}
+          
+            <li><a class="app-menu__item" href="{{ route('dashboard') }}"><i class='app-menu__icon bx bx-dollar'></i><span
+                  class="app-menu__label">Dashboard</span></a></li>
+      
+            <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
+                  class="app-menu__label">Quản Lý Phiếu</span></a></li>
+      
+            <li><a class="app-menu__item" href="{{ route('taikhoan.index') }}"><i class='app-menu__icon bx bx-user-voice'></i><span
+                  class="app-menu__label">Quản Lý Nhân Sự</span></a></li>
+      
+            <li><a class="app-menu__item" href="{{ route('kho.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
+                  class="app-menu__label">Quản Lý Kho</span></a></li>
+      
+            <li><a class="app-menu__item" href="{{ route('sanpham.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
+                  class="app-menu__label">Quản Lý Sản Phẩm</span></a></li>
+      
+            <li><a class="app-menu__item" href="{{ route('loaisp.index') }}"><i class='app-menu__icon bx bx-task'></i><span
+                  class="app-menu__label">Quản Lý Phân Loại</span></a></li>
+      
+            <li><a class="app-menu__item " href="{{ route('nhacungcap.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
+                  class="app-menu__label">Quản Lý Nhà Cung Cấp</span></a></li>
+      
+            <li><a class="app-menu__item " href="{{ route('trangthai.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i> <span
+                  class="app-menu__label">Quản Lý Trạng Thái</span></a></li>
+      
+            <li><a class="app-menu__item" href="{{ route('diachinhapxuat.index') }}"><i class='app-menu__icon bx bx-run'></i><span
+                  class="app-menu__label">Quản Lý Địa Chỉ</span></a></li>
 
-    <li><a class="app-menu__item" href="{{ route('taikhoan.index') }}"><i class='app-menu__icon bx bx-user-voice'></i><span
-          class="app-menu__label">Quản Lý Nhân Sự</span></a></li>
+     
 
-    <li><a class="app-menu__item" href="{{ route('kho.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
-          class="app-menu__label">Quản Lý Kho</span></a></li>
-
-    <li><a class="app-menu__item" href="{{ route('sanpham.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span 
-          class="app-menu__label">Quản Lý Sản Phẩm</span></a></li>
-
-    <li><a class="app-menu__item" href="{{ route('loaisp.index') }}"><i class='app-menu__icon bx bx-task'></i><span
-          class="app-menu__label">Quản Lý Phân Loại</span></a></li>
-
-    <li><a class="app-menu__item " href="{{ route('nhacungcap.index') }}"><i class='app-menu__icon bx bx-id-card'></i> <span
-          class="app-menu__label">Quản Lý Nhà Cung Cấp</span></a></li>
-
-    <li><a class="app-menu__item " href="{{ route('phieunhapxuat.index') }}"><i class='app-menu__icon bx bx-purchase-tag-alt'></i> <span
-          class="app-menu__label">Quản Lý Trạng Thái</span></a></li>
-
-    <li><a class="app-menu__item" href="{{ route('diachinhapxuat.index') }}"><i class='app-menu__icon bx bx-run'></i><span
-          class="app-menu__label">Quản Lý Địa Chỉ</span></a></li>
   </ul>
 </aside>
 

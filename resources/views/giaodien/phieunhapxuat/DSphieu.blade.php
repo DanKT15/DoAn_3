@@ -58,16 +58,16 @@
 
                             @if (!empty($phieu))
                                 
-                                @foreach ($phieu as $key => $value)
+                                @foreach ($phieu as $value)
                                     
                                     <tr>
-                                        <td>{{ $value['id'] }}</td>
-                                        <td>{{ $value['SOPHIEU'] }}</td>
-                                        <td>{{ $value['NGAYLAP'] }}</td>
+                                        <td>{{ $value->id }}</td>
+                                        <td>{{ $value->SOPHIEU }}</td>
+                                        <td>{{ $value->NGAYLAP }}</td>
 
                                         @if (!empty($Trangthai))
                                             @foreach ($Trangthai as $key => $values)
-                                                @if ($values['MATT'] == $value['MATT'])
+                                                @if ($values['MATT'] == $value->MATT)
                                                     <td>{{ $values['TENTT'] }}</td>
                                                 @endif
                                             @endforeach
@@ -76,13 +76,13 @@
                                         <td>
                                             {{-- <a class="btn btn-primary btn-sm trash" href="" title="Xóa"><i class="fas fa-trash-alt"></i></a> --}}
                                             
-                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.edit', ['id' => $value['id']]) }}" title="Sửa"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.edit', ['id' => $value->id]) }}" title="Sửa"><i class="fas fa-edit"></i></a>
                                             
-                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.show', ['id' => $value['id']]) }}" title="Chi tiết"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-primary btn-sm edit" href="{{ route('phieunhapxuat.show', ['id' => $value->id]) }}" title="Chi tiết"><i class="fas fa-edit"></i></a>
 
                                             <form class="btn" action="{{ route('phieunhapxuat.destroy') }}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="idphieu" value="{{ $value['id'] }}">
+                                                <input type="hidden" name="idphieu" value="{{ $value->id }}">
                                                 <button class="btn btn-primary btn-sm trash" type="submit"><i class="fas fa-trash-alt"></i></button>
                                             </form>
 

@@ -180,7 +180,7 @@ class UserController extends Controller
         $rules = [
             'MANV' => 'required|numeric',
             'TENNV' => 'required|regex:/[[:alpha:]]/',
-            'password' => 'required|min:10',
+            'password' => 'required|min:8',
             'SDT' => 'required|numeric',
             'DC' => 'required|regex:/[[:alpha:]]/',
             'GIOITINH' => 'required|alpha',

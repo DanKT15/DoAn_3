@@ -54,30 +54,43 @@ require __DIR__.'/auth.php';
 
 
 
-Route::prefix('phieunhapxuat')->as('phieunhapxuat.')->middleware(['auth'])->group(function () {
+Route::prefix('phieunhapxuat')->as('phieunhapxuat.')->group(function () {
 
-    Route::get('/index', [PhieunhapxuatController::class, 'index'])->name('index');
-    Route::get('/create', [PhieunhapxuatController::class, 'create'])->name('create');
-    Route::post('/store', [PhieunhapxuatController::class, 'store'])->name('store');
-    Route::get('/show/{id}', [PhieunhapxuatController::class, 'show'])->name('show');
-    Route::get('/edit/{id}', [PhieunhapxuatController::class, 'edit'])->name('edit');
-    Route::post('/update', [PhieunhapxuatController::class, 'update'])->name('update');
-    Route::post('/destroy', [PhieunhapxuatController::class, 'destroy'])->name('destroy');
-    Route::post('/index', [PhieunhapxuatController::class, 'select'])->name('select');
-}); // kiet
-
-Route::prefix('diachinhapxuat')->as('diachinhapxuat.')->middleware(['auth'])->group(function () {
-
-    Route::get('/index', [DCnhapxuatController::class, 'index'])->name('index');
-    Route::get('/create', [DCnhapxuatController::class, 'create'])->name('create');
-    Route::post('/store', [DCnhapxuatController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [DCnhapxuatController::class, 'edit'])->name('edit');
-    Route::post('/update', [DCnhapxuatController::class, 'update'])->name('update');
-    Route::post('/destroy', [DCnhapxuatController::class, 'destroy'])->name('destroy');
+    Route::get('/index', [PhieunhapxuatController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::get('/create', [PhieunhapxuatController::class, 'create'])->middleware(['auth', 'user'])->name('create');
+    Route::post('/store', [PhieunhapxuatController::class, 'store'])->middleware(['auth', 'user'])->name('store');
+    Route::get('/show/{id}', [PhieunhapxuatController::class, 'show'])->middleware(['auth'])->name('show');
+    Route::get('/edit/{id}', [PhieunhapxuatController::class, 'edit'])->middleware(['auth', 'user'])->name('edit');
+    Route::post('/update', [PhieunhapxuatController::class, 'update'])->middleware(['auth', 'user'])->name('update');
+    Route::post('/destroy', [PhieunhapxuatController::class, 'destroy'])->middleware(['auth', 'user'])->name('destroy');
+    Route::post('/index', [PhieunhapxuatController::class, 'select'])->middleware(['auth'])->name('select');
 
 }); // kiet
 
-Route::prefix('sanpham')->as('sanpham.')->middleware(['auth'])->group(function () {
+Route::prefix('trangthai')->as('trangthai.')->middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/index', [TrangthaiController::class, 'index'])->name('index');
+    Route::get('/create', [TrangthaiController::class, 'create'])->name('create');
+    Route::post('/store', [TrangthaiController::class, 'store'])->name('store');
+    Route::get('/show/{id}', [TrangthaiController::class, 'show'])->name('show');
+    Route::get('/edit/{id}', [TrangthaiController::class, 'edit'])->name('edit');
+    Route::post('/update', [TrangthaiController::class, 'update'])->name('update');
+    Route::post('/destroy', [TrangthaiController::class, 'destroy'])->name('destroy');
+
+}); // kiet
+
+Route::prefix('diachinhapxuat')->as('diachinhapxuat.')->group(function () {
+
+    Route::get('/index', [DCnhapxuatController::class, 'index'])->middleware(['auth'])->name('index');
+    Route::get('/create', [DCnhapxuatController::class, 'create'])->middleware(['auth', 'user'])->name('create');
+    Route::post('/store', [DCnhapxuatController::class, 'store'])->middleware(['auth', 'user'])->name('store');
+    Route::get('/edit/{id}', [DCnhapxuatController::class, 'edit'])->middleware(['auth', 'user'])->name('edit');
+    Route::post('/update', [DCnhapxuatController::class, 'update'])->middleware(['auth', 'user'])->name('update');
+    Route::post('/destroy', [DCnhapxuatController::class, 'destroy'])->middleware(['auth', 'user'])->name('destroy');
+
+}); // kiet
+
+Route::prefix('sanpham')->as('sanpham.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/index', [SanphamController::class, 'index'])->name('index');
     Route::get('/create', [SanphamController::class, 'create'])->name('create');
@@ -88,7 +101,7 @@ Route::prefix('sanpham')->as('sanpham.')->middleware(['auth'])->group(function (
 
 }); // kiet
 
-Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth'])->group(function () {
+Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/index', [UserController::class, 'index'])->name('index');
     Route::get('/create', [UserController::class, 'create'])->name('create');
@@ -100,10 +113,9 @@ Route::prefix('taikhoan')->as('taikhoan.')->middleware(['auth'])->group(function
 
 }); // kiet
 
-Route::get('dashboard/index', [dashboard::class, 'index'])->name('dashboard');
-Route::get('dashboard/sanpham/{id}', [dashboard::class, 'Detail_SP'])->name('dashboard-sanpham');
+Route::get('dashboard/index', [dashboard::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::prefix('loaisp')->as('loaisp.')->middleware(['auth'])->group(function () {
+Route::prefix('loaisp')->as('loaisp.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/index', [LoaispController::class, 'index'])->name('index');
     Route::get('/create', [LoaispController::class, 'create'])->name('create');
@@ -113,7 +125,7 @@ Route::prefix('loaisp')->as('loaisp.')->middleware(['auth'])->group(function () 
     Route::post('/update', [LoaispController::class, 'update'])->name('update');
 
 });//d
-Route::prefix('kho')->as('kho.')->middleware(['auth'])->group(function () {
+Route::prefix('kho')->as('kho.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/index', [KhoController::class, 'index'])->name('index');
     Route::get('/create', [KhoController::class, 'create'])->name('create');
@@ -123,7 +135,7 @@ Route::prefix('kho')->as('kho.')->middleware(['auth'])->group(function () {
     Route::post('/update', [KhoController::class, 'update'])->name('update');
 
 });//d
-Route::prefix('nhacungcap')->as('nhacungcap.')->middleware(['auth'])->group(function () {
+Route::prefix('nhacungcap')->as('nhacungcap.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/index', [NhacungcapController::class, 'index'])->name('index');
     Route::get('/create', [NhacungcapController::class, 'create'])->name('create');
