@@ -20,7 +20,7 @@
               </div>
             @endif
             
-            <form class="row" action="{{ route('loaisp.store') }}" method="post">
+            <form class="row" action="{{ route('loaisp.update') }}" method="post">
               @csrf
               
               <div class="form-group col-md-3">
